@@ -2,151 +2,82 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>KinooVN DDoS Simulator</title>
+<title>Ultimate Fake Hacker Tool</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
   body {
-    background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
-    color: #fff;
+    background: radial-gradient(circle at top, #050510, #1a0033, #000);
     font-family: 'Share Tech Mono', monospace;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: #0ff;
     padding: 20px;
-    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  .tool {
+    width: 750px;
+    max-width: 95%;
+    background: rgba(10,10,25,0.9);
+    border: 2px solid #0ff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 25px #0ff, inset 0 0 20px rgba(0,255,255,0.2);
   }
   h1 {
+    text-align: center;
     color: #00eaff;
-    text-shadow: 0 0 15px #00eaff, 0 0 30px #0066ff;
-    letter-spacing: 2px;
-    font-size: 36px;
+    text-shadow: 0 0 15px #00eaff, 0 0 30px #ff00ff;
+    letter-spacing: 3px;
   }
-  .panel {
-    background: rgba(20,20,40,0.8);
-    border: 1px solid rgba(0,234,255,0.5);
-    padding: 20px;
-    border-radius: 12px;
-    width: 600px;
-    max-width: 95%;
-    box-shadow: 0 0 25px rgba(0,234,255,0.3), inset 0 0 15px rgba(0,234,255,0.2);
-  }
-  label { display: block; margin-top: 10px; font-size: 14px; }
+  label { display:block; margin-top:10px; color:#fff; }
   input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    background: #0d162f;
-    border: 1px solid #00eaff;
-    color: #fff;
-    border-radius: 5px;
-    font-family: 'Share Tech Mono', monospace;
-    transition: all 0.2s ease;
-  }
-  input:focus, select:focus {
-    outline: none;
-    box-shadow: 0 0 10px #00eaff;
+    width:100%; padding:8px; margin-top:5px;
+    background:#0d162f; border:1px solid #0ff; color:#fff;
+    border-radius:6px; font-family:'Share Tech Mono', monospace;
   }
   button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 12px;
-    cursor: pointer;
-    background: linear-gradient(90deg,#00eaff,#0066ff);
-    color: #000;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px #00eaff;
-    transition: transform 0.2s, box-shadow 0.3s;
+    width:100%; margin-top:15px; padding:12px;
+    background:linear-gradient(90deg,#0ff,#f0f);
+    color:#000; font-weight:bold; border:none;
+    border-radius:8px; font-size:16px;
+    box-shadow:0 0 20px #0ff; cursor:pointer;
   }
-  button:hover { 
-    transform: scale(1.03);
-    box-shadow: 0 0 25px #00eaff, 0 0 50px #0066ff;
-  }
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    text-align: center;
-  }
-  .stat {
-    flex: 1;
-    margin: 5px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #00eaff;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: inset 0 0 15px rgba(0,234,255,0.2);
-  }
-  .stat h2 {
-    font-size: 22px;
-    margin: 5px 0;
-    color: #00ffcc;
-    text-shadow: 0 0 10px #00ffcc;
-  }
+  button:hover { box-shadow:0 0 30px #f0f, 0 0 60px #0ff; }
   .progress {
-    margin-top: 20px;
-    background: #111;
-    border-radius: 8px;
-    height: 18px;
-    overflow: hidden;
-    border: 1px solid #00eaff;
+    margin-top:15px; background:#111; border:1px solid #0ff;
+    border-radius:8px; height:18px; overflow:hidden;
   }
   .progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg,#00eaff,#00ffcc);
-    box-shadow: 0 0 15px #00eaff;
-    transition: width 0.1s linear;
+    height:100%; width:0%; background:linear-gradient(90deg,#0ff,#f0f);
+    box-shadow:0 0 15px #0ff; transition:width 0.1s linear;
   }
   .log-box {
-    background: #000;
-    margin-top: 20px;
-    height: 220px;
-    overflow-y: auto;
-    border: 1px solid #00eaff;
-    padding: 10px;
-    font-size: 13px;
-    border-radius: 8px;
-    box-shadow: inset 0 0 20px rgba(0,234,255,0.2);
+    margin-top:15px; background:#000; height:250px;
+    overflow-y:auto; border:1px solid #0ff; padding:10px;
+    border-radius:8px; box-shadow:inset 0 0 20px rgba(0,255,255,0.2);
+    font-size:13px; color:#0f0;
   }
-  .log-line.ok { color: #00ff9f; text-shadow: 0 0 8px #00ff9f; }
-  .log-line.warn { color: #ffbf00; text-shadow: 0 0 8px #ffbf00; }
-  .log-line.err { color: #ff4d4d; text-shadow: 0 0 8px #ff4d4d; }
+  .log-line.ok { color:#00ff9f; }
+  .log-line.warn { color:#ffbf00; }
+  .log-line.err { color:#ff4d4d; text-shadow:0 0 8px #ff4d4d; }
 </style>
 </head>
 <body>
-  <h1>⚡ KinooVN DDoS Simulator ⚡</h1>
-  <div class="panel">
-    <label>Mục tiêu</label>
-    <input id="target" placeholder="example.com">
-    <label>Phương thức</label>
-    <select id="method">
-      <option>UDP</option>
-      <option>TCP</option>
-      <option>HTTP</option>
+  <div class="tool">
+    <h1>⚡ Ultimate Hacker Tool ⚡</h1>
+    <label>Mục tiêu (fake)</label>
+    <input id="target" placeholder="IP hoặc Domain...">
+    <label>Chế độ</label>
+    <select id="mode">
+      <option>DDoS</option>
+      <option>Phá Server</option>
+      <option>Hack Acc</option>
+      <option>Chiếm Quyền Kiểm Soát</option>
+      <option>Keylogger</option>
+      <option>Cài Backdoor</option>
     </select>
     <label>Threads</label>
-    <input id="threads" type="number" value="512">
+    <input id="threads" type="number" value="1024">
     <button id="startBtn">▶ START</button>
-
-    <div class="stats">
-      <div class="stat">
-        <div>Packets/s</div>
-        <h2 id="pps">0</h2>
-      </div>
-      <div class="stat">
-        <div>Latency</div>
-        <h2 id="latency">0 ms</h2>
-      </div>
-      <div class="stat">
-        <div>Drop Rate</div>
-        <h2 id="drop">0%</h2>
-      </div>
-    </div>
 
     <div class="progress"><div class="progress-bar" id="bar"></div></div>
     <div class="log-box" id="log"></div>
@@ -156,24 +87,49 @@
   const logBox = document.getElementById('log');
   const bar = document.getElementById('bar');
   const startBtn = document.getElementById('startBtn');
-  const ppsEl = document.getElementById('pps');
-  const latencyEl = document.getElementById('latency');
-  const dropEl = document.getElementById('drop');
+  const modeSelect = document.getElementById('mode');
 
   let running = false;
   let interval;
 
-  const logs = [
-    {msg: "Allocating buffers... OK", type:"ok"},
-    {msg: "Resolving target host...", type:"ok"},
-    {msg: "Packets sent: ###pps### pps", type:"ok"},
-    {msg: "Network jitter detected", type:"warn"},
-    {msg: "Latency spike detected", type:"warn"},
-    {msg: "Packet drop rate high", type:"warn"},
-    {msg: "Connection reset by peer", type:"err"},
-    {msg: "Re-establishing connection... OK", type:"ok"},
-    {msg: "QoS scheduler tick", type:"ok"},
-  ];
+  const logTemplates = {
+    "DDoS": [
+      {msg:"Sending ###pps### packets/sec...", type:"ok"},
+      {msg:"Amplification factor engaged", type:"warn"},
+      {msg:"Target response timeout", type:"warn"},
+      {msg:"Connection reset by peer", type:"err"}
+    ],
+    "Phá Server": [
+      {msg:"Injecting overload payload...", type:"ok"},
+      {msg:"Server CPU spike detected", type:"warn"},
+      {msg:"Crash exploit executed", type:"ok"},
+      {msg:"Kernel panic triggered!", type:"err"}
+    ],
+    "Hack Acc": [
+      {msg:"Bruteforce attempt with ###pps### passwords/sec", type:"ok"},
+      {msg:"Bypassing 2FA...", type:"warn"},
+      {msg:"Password match found!", type:"ok"},
+      {msg:"Access denied — retrying", type:"err"}
+    ],
+    "Chiếm Quyền Kiểm Soát": [
+      {msg:"Escalating privileges...", type:"ok"},
+      {msg:"Root access attempt...", type:"warn"},
+      {msg:"Privilege escalation success", type:"ok"},
+      {msg:"System locked admin session", type:"err"}
+    ],
+    "Keylogger": [
+      {msg:"Injecting JS keylogger...", type:"ok"},
+      {msg:"Capturing keystrokes...", type:"ok"},
+      {msg:"Encryption bypass attempt", type:"warn"},
+      {msg:"Antivirus detected! Hiding...", type:"err"}
+    ],
+    "Cài Backdoor": [
+      {msg:"Uploading backdoor payload...", type:"ok"},
+      {msg:"Establishing reverse shell...", type:"warn"},
+      {msg:"Persistence registry modified", type:"ok"},
+      {msg:"Firewall blocked connection", type:"err"}
+    ]
+  };
 
   function addLog(text, type){
     const line = document.createElement('div');
@@ -191,23 +147,15 @@
     startBtn.textContent = "■ STOP";
     let progress = 0;
     interval = setInterval(()=>{
-      // fake progress
-      progress += Math.random()*6;
+      progress += Math.random()*8;
       if(progress >= 100) progress = 0;
       bar.style.width = progress + "%";
 
-      // fake stats
-      let pps = randomRange(100000,250000);
-      let latency = randomRange(15,50);
-      let drop = (Math.random()*1).toFixed(2);
-
-      ppsEl.textContent = pps.toLocaleString();
-      latencyEl.textContent = latency+" ms";
-      dropEl.textContent = drop+"%";
-
-      // fake log
+      const mode = modeSelect.value;
+      const logs = logTemplates[mode];
       const log = logs[Math.floor(Math.random()*logs.length)];
-      addLog(log.msg.replace("###pps###", pps.toLocaleString()), log.type);
+      const fakePps = randomRange(50000,200000);
+      addLog(log.msg.replace("###pps###", fakePps.toLocaleString()), log.type);
     }, 400);
   }
 
@@ -216,9 +164,6 @@
     startBtn.textContent = "▶ START";
     clearInterval(interval);
     bar.style.width = "0%";
-    ppsEl.textContent = "0";
-    latencyEl.textContent = "0 ms";
-    dropEl.textContent = "0%";
   }
 
   startBtn.addEventListener('click', ()=>{
