@@ -3,547 +3,566 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Ultimate Fake Hacker Tool — Pro Max (Fake UI Only)</title>
+<title>Ultimate Elite Fake Hacker UI — Pro (FAKE UI ONLY)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-  /* =====================================================
-     Ultimate Fake Hacker Tool — CSS (neon / glitchy / pro)
-     NOTE: file này hoàn toàn offline, KHÔNG gọi mạng.
-     ===================================================== */
-  :root{
-    --bg1:#05010a; --bg2:#120022; --neon-a:#00f5ff; --neon-b:#ff2dd4;
-    --glass: rgba(255,255,255,0.04); --muted:#9fb0c7; --accent:#8affff;
-    --ok:#2ef29b; --warn:#ffbf47; --bad:#ff6b7a;
-    --panel-radius:14px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:
-    radial-gradient(1200px 400px at 10% 10%, rgba(0,0,0,0.3), transparent),
-    linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:#e6f7ff;font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-    -webkit-font-smoothing:antialiased;}
-  /* Layout */
-  .app {
-    max-width:1200px;margin:28px auto;padding:20px;display:grid;
-    grid-template-columns: 320px 1fr; gap:18px;
-  }
+/* ===========================================================
+   ULTIMATE ELITE FAKE HACKER UI
+   NOTE: This file is 100% offline. NO NETWORK CALLS. FAKE UI.
+   =========================================================== */
+:root{
+  --bg-1: #03020b;
+  --bg-2: #081028;
+  --glass: rgba(255,255,255,0.04);
+  --muted: #9fb0c7;
+  --accent-1: #00f5ff;
+  --accent-2: #ff3ec6;
+  --accent-3: #a0ff73;
+  --danger: #ff4d6d;
+  --ok: #2ef29b;
+  --panel-radius:16px;
+  --glass-2: rgba(255,255,255,0.03);
+  --mono: 'Share Tech Mono', monospace;
+  --ui: 'Inter', system-ui, Arial, sans-serif;
+}
 
-  /* Sidebar */
-  .sidebar{
-    border-radius:var(--panel-radius); padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 24px rgba(0,0,0,0.12);
-  }
-  .brand{
-    display:flex; gap:12px; align-items:center; margin-bottom:10px;
-  }
-  .logo {
-    width:56px;height:56px;border-radius:12px;
-    background: linear-gradient(135deg,var(--neon-a),var(--neon-b));
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 0 20px rgba(138,255,255,0.08);
-  }
-  .logo svg{width:40px;height:40px;filter:drop-shadow(0 0 12px rgba(0,255,255,0.12));}
-  .brand h2{margin:0;font-size:18px; letter-spacing:1px}
-  .brand p{margin:0;font-size:11px;color:var(--muted)}
+/* Body + layout */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:
+  radial-gradient(800px 400px at 10% 10%, rgba(0,0,0,0.4), transparent),
+  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:#dff7ff;font-family:var(--ui); -webkit-font-smoothing:antialiased;}
+.app{
+  max-width:1280px;margin:28px auto;padding:18px;display:grid;
+  grid-template-columns: 360px 1fr; gap:18px;
+  align-items:start;
+}
 
-  .anon {
-    display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    margin:10px 0; border:1px solid rgba(255,255,255,0.03);
-  }
-  .anon .mask{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2)}
-  .anon .meta{font-size:13px}
-  .mode-list{margin-top:12px; display:grid; gap:8px;}
-  .mode-item{
-    display:flex; gap:10px; align-items:center; padding:10px; border-radius:10px; cursor:pointer;
-    transition: all .12s ease; border:1px solid rgba(255,255,255,0.02);
-  }
-  .mode-item:hover{transform:translateX(6px); box-shadow: 0 8px 18px rgba(0,0,0,0.6)}
-  .mode-item.active{background:linear-gradient(90deg, rgba(138,255,255,0.04), rgba(255,45,212,0.03)); border:1px solid rgba(138,255,255,0.12);}
-  .mode-item svg{width:28px;height:28px;opacity:.95}
-  .mode-item .txt{font-size:14px}
-  .controls{margin-top:14px;display:grid;gap:10px}
-  label.small{font-size:12px;color:var(--muted);margin-bottom:6px}
+/* Sidebar */
+.side{
+  border-radius:var(--panel-radius); padding:16px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-2); box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,255,255,0.02);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  transform:translateZ(0);
+}
+.logo svg{width:42px;height:42px;filter:drop-shadow(0 0 8px rgba(0,255,255,0.12))}
+.brand h1{margin:0;font-size:16px;letter-spacing:1px}
+.brand p{margin:0;font-size:12px;color:var(--muted)}
 
-  /* Main panel */
-  .main{
-    min-height:640px;padding:16px;border-radius:var(--panel-radius);
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.04); position:relative; overflow:hidden;
-  }
-  .title{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;
-  }
-  .title h1{margin:0;font-size:20px; letter-spacing:1px; color:var(--neon-a)}
-  .title .small{font-size:12px;color:var(--muted)}
+/* identity card */
+.id{
+  margin-top:14px;padding:10px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.02);display:flex;gap:12px;align-items:center;
+}
+.id .avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2)}
+.id .meta{font-size:13px}
+.id .meta .name{font-weight:700}
+.id .meta .tag{font-size:12px;color:var(--muted)}
 
-  /* top bar inputs */
-  .top-row{display:flex;gap:10px}
-  .input, .select{
-    padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
-    background: rgba(10,12,20,0.5); color:var(--neon-a); font-size:14px; outline:none;
-  }
-  .input::placeholder{color: #6b8aa7}
-  .big-btn{
-    padding:10px 16px;border-radius:10px;border:none;cursor:pointer;
-    background:linear-gradient(90deg,var(--neon-a),var(--neon-b)); color:#000; font-weight:800;
-    box-shadow: 0 6px 24px rgba(138,255,255,0.08); transition:transform .1s;
-  }
-  .big-btn:active{transform:translateY(1px)}
+/* Mode list */
+.modes{margin-top:12px;display:grid;gap:10px}
+.mode{
+  display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.02);
+  transition: transform .12s, box-shadow .12s;
+  background:linear-gradient(180deg, rgba(255,255,255,0.005), rgba(255,255,255,0.01));
+}
+.mode:hover{transform:translateX(6px)}
+.mode.active{box-shadow:0 12px 30px rgba(0,0,0,0.5), inset 0 0 18px rgba(0,255,255,0.03); border:1px solid rgba(138,255,255,0.12)}
+.mode svg{width:28px;height:28px;opacity:.95}
+.mode .lbl{font-weight:600;font-size:14px}
 
-  /* metrics */
-  .metrics{display:flex;gap:12px;margin-top:14px}
-  .metric{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0)); border:1px solid rgba(255,255,255,0.02)}
-  .metric h3{margin:0;font-size:13px;color:var(--muted)}
-  .metric .value{font-size:20px;margin-top:6px; color:var(--neon-b); text-shadow: 0 0 14px rgba(255,45,212,0.12)}
+/* quick options */
+.options{margin-top:14px;display:grid;gap:8px}
+.option{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);background:rgba(0,0,0,0.2)}
+.option label{font-size:13px;color:var(--muted)}
+.option .right{display:flex;gap:10px;align-items:center}
 
-  /* progress bar with waveform */
-  .progress-wrap{margin-top:16px}
-  .progress{
-    height:16px;border-radius:999px;background:rgba(0,0,0,0.4);overflow:hidden;border:1px solid rgba(255,255,255,0.03);
-  }
-  .progress > i{
-    display:block;height:100%;width:0%;
-    background: linear-gradient(90deg,#00f5ff,#8affff,#ff6bd4,#ffd54d);
-    background-size: 300% 100%;
-    animation: hue 3s linear infinite;
-    box-shadow: 0 0 18px rgba(138,255,255,0.08), inset 0 0 12px rgba(255,255,255,0.02);
-    transition: width .12s linear;
-  }
-  @keyframes hue{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+/* small links / footer */
+.side-footer{margin-top:14px;font-size:12px;color:var(--muted); text-align:center}
 
-  /* Terminal / Log */
-  .logs{margin-top:18px;display:flex;gap:12px}
-  .terminal{flex:1;min-height:360px;border-radius:10px;padding:12px;background:#000;border:1px solid rgba(255,255,255,0.03);overflow:hidden;display:flex;flex-direction:column}
-  .terminal .controls{display:flex;gap:8px;align-items:center}
-  .terminal .screen{flex:1;overflow:auto;margin-top:8px;padding:8px;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));border-radius:8px;font-size:13px;color:#bfffdc}
-  .log-line{margin:6px 0; white-space:pre-wrap; opacity:0; transform:translateY(6px); animation:appear .4s forwards}
-  @keyframes appear{to{opacity:1; transform:none}}
-  .log-new{box-shadow:0 0 18px rgba(138,255,255,0.06);}
+/* MAIN */
+.main{
+  border-radius:var(--panel-radius); padding:16px;background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-2); box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  position:relative; overflow:hidden;
+}
 
-  /* map visualization */
-  .map {width:360px;border-radius:10px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));border:1px solid rgba(255,255,255,0.03)}
-  .node{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;margin-bottom:8px; border:1px solid rgba(255,255,255,0.02)}
-  .node .dot{width:12px;height:12px;border-radius:6px;background:radial-gradient(circle,#00ffcc,#0066ff); box-shadow:0 0 8px rgba(0,255,204,0.12)}
-  .node h4{margin:0;font-size:13px;color:var(--muted)}
+/* header */
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-left{display:flex;align-items:center;gap:12px}
+.title{
+  font-family:var(--mono); font-size:20px; letter-spacing:1px; color:var(--accent-1);
+  text-shadow:0 0 10px rgba(0,245,255,0.12);
+}
+.subtitle{font-size:12px;color:var(--muted)}
 
-  /* exploit panel */
-  .exploits{margin-top:12px;display:grid; gap:8px}
-  .exploit{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
-  .exploit .label{font-size:13px;color:var(--muted)}
-  .exploit .btn{padding:6px 10px;border-radius:8px;background:linear-gradient(90deg,#ff8ab8,#8affff);border:none;cursor:pointer;color:#000;font-weight:700}
+/* controls row */
+.controls{display:flex;gap:10px;margin-top:12px;align-items:center}
+.input{
+  background:rgba(10,12,20,0.6); padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03); color:var(--accent-1); width:260px; outline:none;
+}
+.select{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(10,12,20,0.6);color:var(--muted)}
+.btn{
+  padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:#021018; box-shadow:0 12px 32px rgba(0,0,0,0.45);
+}
+.btn.stop{background:linear-gradient(90deg,#ff6b7a,#ffbf47); color:#fff}
 
-  /* footer */
-  .footer{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
-  /* small screens */
-  @media (max-width:980px){
-    .app{grid-template-columns:1fr; padding:12px}
-    .map{order:3}
-  }
+/* metrics */
+.metrics{display:flex;gap:12px;margin-top:14px}
+.metric{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0)); border:1px solid rgba(255,255,255,0.02)}
+.metric .k{font-size:12px;color:var(--muted)}
+.metric .v{font-family:var(--mono); font-size:20px;color:var(--accent-2); margin-top:6px; text-shadow:0 0 10px rgba(255,62,198,0.08)}
+
+/* waveform progress */
+.wave{margin-top:14px;border-radius:12px;padding:8px;background:linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.55)); border:1px solid rgba(255,255,255,0.02)}
+.progress{height:18px;border-radius:999px;background:rgba(0,0,0,0.35);overflow:hidden;border:1px solid rgba(255,255,255,0.02)}
+.progress > i{
+  display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent-1),var(--accent-3),var(--accent-2)); background-size:300% 100%;
+  animation: slide 4s linear infinite; box-shadow:0 0 22px rgba(138,255,255,0.06);
+}
+@keyframes slide{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* terminal area */
+.terminal-wrap{display:flex;gap:12px;margin-top:14px}
+.terminal{flex:1;min-height:420px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));border:1px solid rgba(255,255,255,0.02);padding:12px;display:flex;flex-direction:column}
+.terminal .controls{display:flex;gap:10px;align-items:center}
+.term-screen{flex:1;margin-top:10px;padding:12px;background:linear-gradient(180deg,#001018, #000);border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;color:#bfffdc}
+
+/* log lines */
+.log{
+  display:block;margin:6px 0;opacity:0;transform:translateX(-6px); animation: in 0.45s forwards;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+@keyframes in{to{opacity:1;transform:none}}
+
+/* right panel / map */
+.map{width:320px;border-radius:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));border:1px solid rgba(255,255,255,0.02)}
+.map h3{margin:0;font-size:14px;color:var(--muted)}
+.node{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;margin-top:10px;border:1px solid rgba(255,255,255,0.02);background:rgba(0,0,0,0.2)}
+.node .left{display:flex;gap:10px;align-items:center}
+.dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-1),var(--accent-3));box-shadow:0 0 8px rgba(0,255,255,0.08)}
+.node .meta{font-size:13px; color:var(--muted)}
+
+/* modal */
+.modal{
+  position:fixed;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  background:rgba(2,4,10,0.6);backdrop-filter: blur(3px);opacity:0;pointer-events:none;transition:opacity .18s;
+}
+.modal.open{opacity:1;pointer-events:auto}
+.modal .card{width:560px;border-radius:12px;padding:18px;background:linear-gradient(180deg,#021025,#021018);border:1px solid rgba(255,255,255,0.03)}
+.modal h2{margin:0;font-size:18px;color:var(--accent-2)}
+.modal p{color:var(--muted);margin-top:8px}
+
+/* tiny helpers */
+.small{font-size:12px;color:var(--muted)}
+.kv{display:flex;gap:8px;align-items:center}
+.export-btn{padding:8px 10px;border-radius:8px;background:linear-gradient(90deg,#8affff,#ffd54d);border:none;color:#000;font-weight:700;cursor:pointer}
+.warning{color:var(--danger);font-weight:700}
+.footer{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:1050px){
+  .app{grid-template-columns: 1fr; padding:12px}
+  .map{width:100%}
+}
 </style>
 </head>
 <body>
-  <div class="app">
+  <!--
+     ULTIMATE ELITE FAKE HACKER UI
+     IMPORTANT: This UI is strictly a visual mockup. No network calls, no real attacks.
+  -->
+  <div class="app" id="app">
     <!-- SIDEBAR -->
-    <aside class="sidebar" aria-label="sidebar">
+    <aside class="side" aria-label="sidebar">
       <div class="brand">
-        <div class="logo" title="Ultimate fake">
-          <!-- Anonymous-style mask SVG (generic) -->
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M32 6C20 6 12 14 12 28s8 22 20 22 20-10 20-22S44 6 32 6z" fill="#000"/>
-            <path d="M20 36c6 6 14 6 20 0" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="23" cy="26" r="2" fill="#fff"/>
-            <circle cx="41" cy="26" r="2" fill="#fff"/>
+        <div class="logo" aria-hidden="true">
+          <!-- Anonymous mask icon inline SVG -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="mask">
+            <g fill="none" fill-rule="evenodd">
+              <path d="M32 6C20 6 12 14 12 28s8 22 20 22 20-10 20-22S44 6 32 6z" fill="#000"/>
+              <path d="M20 36c6 6 14 6 20 0" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="23" cy="26" r="2" fill="#fff"/>
+              <circle cx="41" cy="26" r="2" fill="#fff"/>
+            </g>
           </svg>
         </div>
         <div>
-          <h2>ULTIMATE PRO MAX</h2>
-          <p>Fake Hacker UI • For show only</p>
+          <h1>ULTIMATE ELITE</h1>
+          <p class="small">Fake Hacker UI — Pro Mockup</p>
         </div>
       </div>
 
-      <div class="anon">
-        <div class="mask" title="anonymous">
-          <!-- small mask icon -->
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 2C7 2 4 6 4 10s3 8 8 8 8-4 8-8-3-8-8-8z" fill="#000"/><circle cx="9.5" cy="10" r="1" fill="#fff"/><circle cx="14.5" cy="10" r="1" fill="#fff"/></svg>
+      <div class="id" role="region" aria-label="identity">
+        <div class="avatar" aria-hidden="true">
+          <!-- stylized avatar -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" fill="#021018" stroke="#fff"/><path d="M4 20c2-4 6-6 8-6s6 2 8 6" fill="#021018" stroke="#fff"/></svg>
         </div>
         <div class="meta">
-          <div style="font-size:13px">Anonymous • <span style="color:var(--muted)">stealth</span></div>
-          <div style="font-size:11px;color:var(--muted)">ID: <strong>#<?=(Math.floor(Math.random()*900)+100)?></strong></div>
+          <div class="name">Anonymous</div>
+          <div class="tag">ID: <strong id="uid">#ELT-0001</strong></div>
         </div>
       </div>
 
-      <div class="mode-list" id="modes">
-        <!-- mode items (JS will attach .active) -->
-        <div class="mode-item active" data-mode="DDoS">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M3 12h18M12 3v18"/></svg>
-          <div class="txt">DDoS</div>
-        </div>
-        <div class="mode-item" data-mode="Phá Server">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M4 7h16v10H4zM9 12h6"/></svg>
-          <div class="txt">Phá Server</div>
-        </div>
-        <div class="mode-item" data-mode="Hack Acc">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2a6 6 0 016 6v4"/></svg>
-          <div class="txt">Hack Acc</div>
-        </div>
-        <div class="mode-item" data-mode="Chiếm Quyền">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2l3 7h7l-5.7 4 2 7L12 16 5.7 20 7.7 13 2 9h7z"/></svg>
-          <div class="txt">Chiếm Quyền Kiểm Soát</div>
-        </div>
-        <div class="mode-item" data-mode="Keylogger">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M4 7h16v10H4zM8 12h8"/></svg>
-          <div class="txt">Keylogger</div>
-        </div>
-        <div class="mode-item" data-mode="Backdoor">
-          <svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2v20M2 12h20"/></svg>
-          <div class="txt">Cài Backdoor</div>
+      <div class="modes" id="modeList" aria-label="modes">
+        <!-- modes: clickable -->
+        <div class="mode active" data-mode="DDoS"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M3 12h18M12 3v18"/></svg><div class="lbl">DDoS</div></div>
+        <div class="mode" data-mode="Phá Server"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M4 7h16v10H4zM9 12h6"/></svg><div class="lbl">Phá Server</div></div>
+        <div class="mode" data-mode="Hack Acc"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2a6 6 0 016 6v4"/></svg><div class="lbl">Hack Acc</div></div>
+        <div class="mode" data-mode="Chiếm Quyền"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2l3 7h7l-5.7 4 2 7L12 16 5.7 20 7.7 13 2 9h7z"/></svg><div class="lbl">Chiếm Quyền</div></div>
+        <div class="mode" data-mode="Keylogger"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M4 7h16v10H4zM8 12h8"/></svg><div class="lbl">Keylogger</div></div>
+        <div class="mode" data-mode="Backdoor"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.4" d="M12 2v20M2 12h20"/></svg><div class="lbl">Backdoor</div></div>
+      </div>
+
+      <div class="options">
+        <div class="option"><label>Intensity</label><div class="right"><input id="intensityS" type="range" min="1" max="10" value="7"></div></div>
+        <div class="option"><label>Anonymity (spoof)</label><div class="right"><input id="spoofS" type="checkbox" checked></div></div>
+        <div class="option"><label>Audio FX</label><div class="right"><input id="soundS" type="checkbox"></div></div>
+        <div class="option"><label>Theme</label>
+          <div class="right">
+            <select id="themeSel" class="select small">
+              <option value="neon">Neon</option>
+              <option value="cyber">Cyber</option>
+              <option value="aurora">Aurora</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div class="controls">
-        <div>
-          <label class="small">Intensity</label>
-          <input id="intensity" type="range" min="1" max="10" value="6" />
-        </div>
-        <div>
-          <label class="small">Anonymity</label>
-          <input id="spoof" type="checkbox" checked /> <span style="font-size:13px;color:var(--muted);margin-left:6px">Enable spoof</span>
-        </div>
-        <div>
-          <label class="small">Sound</label>
-          <input id="sound" type="checkbox" /> <span style="font-size:13px;color:var(--muted);margin-left:6px">Audio fx</span>
-        </div>
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button class="btn" id="exportBtn">Export Snapshot</button>
+        <button class="btn" id="dangerBtn" style="background:linear-gradient(90deg,#ff6b7a,#ffbf47)">Danger Demo</button>
       </div>
 
-      <div style="margin-top:14px">
-        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Quick exploits</div>
-        <div class="exploits">
-          <div class="exploit"><div class="label">0-day Kernel</div><button class="btn" data-exp="0day">Deploy</button></div>
-          <div class="exploit"><div class="label">IoT Botnet Module</div><button class="btn" data-exp="bot">Inject</button></div>
-          <div class="exploit"><div class="label">Phish Kit</div><button class="btn" data-exp="phish">Run</button></div>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;font-size:12px;color:var(--muted)">Status: <strong id="side-status" style="color:var(--ok)">Idle (Fake)</strong></div>
+      <div class="side-footer">Status: <strong id="sideStatus" style="color:var(--muted)">Idle (FAKE)</strong></div>
     </aside>
 
     <!-- MAIN -->
-    <main class="main">
-      <div class="title">
-        <div>
-          <h1>⚡ ULTIMATE FAKE HACKER TOOL — PRO MAX</h1>
-          <div class="small">Mô phỏng đẹp — Không thực thi bất kỳ hành vi nào</div>
+    <section class="main" aria-label="main">
+      <div class="header">
+        <div class="header-left">
+          <div class="title">ULTIMATE ELITE — PRO</div>
+          <div class="subtitle small">Visual-only, beautiful mockup • Không có kết nối mạng</div>
         </div>
-        <div class="title-right">
-          <div style="display:flex;gap:8px;align-items:center">
-            <div style="font-size:12px;color:var(--muted)">Session</div>
-            <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)">#FAKE-<?=(Math.floor(Math.random()*9000)+1000)?></div>
-          </div>
-        </div>
+        <div class="header-right small">Session: <strong id="sessId">ELT-0001</strong></div>
       </div>
 
-      <div class="top-row">
-        <input id="target" class="input" placeholder="Enter target (fake) — IP or domain" />
+      <div class="controls">
+        <input id="targetInput" class="input" placeholder="Target (fake) — IP or domain">
         <select id="proto" class="select">
           <option>Auto (fake)</option><option>UDP</option><option>TCP</option><option>HTTP</option><option>ICMP</option>
         </select>
-        <button class="big-btn" id="start">▶ START</button>
+        <button class="btn" id="startBtn">▶ START</button>
+        <button class="btn stop" id="stopBtn" style="display:none">■ STOP</button>
       </div>
 
       <div class="metrics">
-        <div class="metric"><h3>Packets / s</h3><div class="value" id="pps">0</div></div>
-        <div class="metric"><h3>Latency</h3><div class="value" id="lat">0 ms</div></div>
-        <div class="metric"><h3>Drop Rate</h3><div class="value" id="dr">0%</div></div>
-        <div class="metric"><h3>Throughput</h3><div class="value" id="tp">0 Mb/s</div></div>
+        <div class="metric"><div class="k">Packets / s</div><div class="v" id="pps">0</div></div>
+        <div class="metric"><div class="k">Latency</div><div class="v" id="lat">0 ms</div></div>
+        <div class="metric"><div class="k">Drop Rate</div><div class="v" id="dr">0%</div></div>
+        <div class="metric"><div class="k">Throughput</div><div class="v" id="tp">0 Mb/s</div></div>
       </div>
 
-      <div class="progress-wrap">
+      <div class="wave">
         <div class="progress"><i id="bar"></i></div>
       </div>
 
-      <div class="logs">
+      <div class="terminal-wrap">
         <div class="terminal">
           <div class="controls">
             <div style="display:flex;gap:8px">
-              <button class="big-btn" id="spam">✦ Spam Log</button>
-              <button class="big-btn" id="clear">✦ Clear</button>
+              <button class="btn" id="burstBtn">Burst</button>
+              <button class="btn" id="spamBtn">Spam</button>
+              <button class="btn" id="clearBtn">Clear</button>
             </div>
-            <div style="margin-left:auto;color:var(--muted);font-size:13px">Fake terminal • no network • for show</div>
+            <div style="margin-left:auto;font-size:12px;color:var(--muted)">No network • demo-only</div>
           </div>
-          <div class="screen" id="screen" aria-live="polite"></div>
+          <div class="term-screen" id="screen" aria-live="polite"></div>
         </div>
 
-        <aside class="map" aria-label="map">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div style="font-size:14px;color:var(--muted)">Network Map</div>
-            <div style="font-size:12px;color:var(--muted)">Nodes: <strong id="nodecount">6</strong></div>
-          </div>
-          <div id="nodes">
-            <!-- nodes injected by JS -->
-          </div>
-
-          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Modules</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="big-btn" id="module-stealth" style="padding:8px 10px;font-size:12px">Stealth</button>
-            <button class="big-btn" id="module-noise" style="padding:8px 10px;font-size:12px">Noise</button>
+        <aside class="map">
+          <h3>Network Map</h3>
+          <div class="node"><div class="left"><div class="dot" id="dot1"></div><div class="meta"><div style="font-weight:700">node-01</div><div class="small">US • alive</div></div></div><div class="small">lat 12ms</div></div>
+          <div class="node"><div class="left"><div class="dot" id="dot2"></div><div class="meta"><div style="font-weight:700">node-02</div><div class="small">EU • alive</div></div></div><div class="small">lat 24ms</div></div>
+          <div class="node"><div class="left"><div class="dot" id="dot3"></div><div class="meta"><div style="font-weight:700">node-03</div><div class="small">AS • lagging</div></div></div><div class="small">lat 122ms</div></div>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn" id="stealthBtn">Stealth</button>
+            <button class="btn" id="noiseBtn">Noise</button>
           </div>
         </aside>
       </div>
 
-      <div class="footer" id="footer-note">LƯU Ý: Giao diện *chỉ* để trưng bày / stream / mockup. Không có kết nối mạng.</div>
-    </main>
+      <div class="footer">© Ultimate Elite — Fake UI. Designed for streams & mockups. Do not misuse.</div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="card">
+      <h2>⚠️ DANGER DEMO (FAKE)</h2>
+      <p class="small">Bạn đang mở chế độ Demo Nguy Hiểm — tất cả là mô phỏng. Không có hành vi thực tế nào được thực hiện. Tiếp tục chỉ để show.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn" id="modalOk">OK</button>
+        <button class="btn stop" id="modalCancel">Hủy</button>
+      </div>
+    </div>
   </div>
 
 <script>
 /* ============================================================
-   Ultimate Fake Hacker Tool — JS
-   => Hoàn toàn offline; KHÔNG sử dụng fetch / XHR / websockets.
-   => Mọi hành vi "attack" ở đây chỉ là text/animation giả.
-   ============================================================ */
+  Ultimate Elite Fake Hacker UI — JavaScript
+  - 100% offline, no network calls.
+  - Strictly visual / UX demo.
+  ============================================================ */
 
-(function(){
-  // helpers
-  const el = (s)=>document.querySelector(s);
-  const rnd = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
-  const comma = (n)=>n.toLocaleString();
+(() => {
+  // Helpers
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const rand = (min, max) => Math.floor(Math.random()*(max-min+1))+min;
+  const fmt = n => n.toLocaleString();
 
-  // UI refs
-  const modes = document.querySelectorAll('.mode-item');
-  const startBtn = document.getElementById('start');
-  const intensity = document.getElementById('intensity');
-  const spoof = document.getElementById('spoof');
-  const sound = document.getElementById('sound');
-  const screen = document.getElementById('screen');
-  const ppsEl = document.getElementById('pps');
-  const latEl = document.getElementById('lat');
-  const drEl = document.getElementById('dr');
-  const tpEl = document.getElementById('tp');
-  const bar = document.getElementById('bar');
-  const sideStatus = document.getElementById('side-status');
-  const nodecount = document.getElementById('nodecount');
+  // Elements
+  const modes = $$('.mode');
+  const startBtn = $('#startBtn');
+  const stopBtn = $('#stopBtn');
+  const burstBtn = $('#burstBtn');
+  const spamBtn = $('#spamBtn');
+  const clearBtn = $('#clearBtn');
+  const screen = $('#screen');
+  const ppsEl = $('#pps'); const latEl = $('#lat'); const drEl = $('#dr'); const tpEl = $('#tp');
+  const bar = $('#bar');
+  const intensity = $('#intensityS');
+  const spoof = $('#spoofS');
+  const sound = $('#soundS');
+  const exportBtn = $('#exportBtn');
+  const dangerBtn = $('#dangerBtn');
+  const modal = $('#modal');
+  const modalOk = $('#modalOk');
+  const modalCancel = $('#modalCancel');
+  const themeSel = $('#themeSel');
+  const sideStatus = $('#sideStatus');
+  const sessId = $('#sessId');
+  const uid = $('#uid');
 
-  // state
-  let currentMode = 'DDoS';
+  // State
+  let activeMode = 'DDoS';
   let running = false;
-  let tickInt = null;
-  let nodeNum = 6;
+  let loop = null;
+  let session = { id: 'ELT-'+String(rand(1000,9999)), start: null, events: [] };
 
-  // init nodes
-  function makeNodes(n){
-    const nodes = document.getElementById('nodes');
-    nodes.innerHTML = '';
-    for(let i=0;i<n;i++){
-      const div = document.createElement('div');
-      div.className = 'node';
-      div.innerHTML = `<div class="dot"></div><div><h4>node-${i+1}.lan</h4><div style="font-size:12px;color:var(--muted)">status: ${['idle','alive','lagging'][rnd(0,2)]}</div></div>`;
-      nodes.appendChild(div);
-    }
-    nodecount.textContent = n;
-  }
-  makeNodes(nodeNum);
+  // Init UI
+  sessId.textContent = session.id;
+  uid.textContent = '#ELT-'+rand(1000,9999);
 
-  // mode selection
-  modes.forEach(m=>{
-    m.addEventListener('click', ()=>{
+  // Mode click
+  modes.forEach(m => {
+    m.addEventListener('click', () => {
       modes.forEach(x=>x.classList.remove('active'));
       m.classList.add('active');
-      currentMode = m.dataset.mode;
-      addSystemLog(`Mode switched → ${currentMode}`, 'info');
-      sideStatus.textContent = `Selected: ${currentMode} (Fake)`;
-      sideStatus.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#8affff';
+      activeMode = m.dataset.mode;
+      addLog(`Mode → ${activeMode}`, 'info');
+      sideStatus.textContent = `Selected: ${activeMode} (FAKE)`;
+      session.events.push({t: Date.now(), type:'mode', mode: activeMode});
     });
   });
 
-  // sound fx (simple beeps using WebAudio)
+  // Sound (WebAudio simple)
   let audioCtx = null;
-  function beep(freq=440,dur=0.05,vol=0.05){
+  function beep(freq=880, dur=0.04, vol=0.02){
     if(!sound.checked) return;
     try{
       if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const o = audioCtx.createOscillator();
       const g = audioCtx.createGain();
-      o.connect(g); g.connect(audioCtx.destination);
-      o.type = 'sine'; o.frequency.value = freq;
+      o.type = 'sine';
+      o.frequency.value = freq;
       g.gain.value = vol;
+      o.connect(g); g.connect(audioCtx.destination);
       o.start();
-      setTimeout(()=>{ o.stop(); }, dur*1000);
-    }catch(e){ /* ignore on unsupported */ }
+      setTimeout(()=>o.stop(), dur*1000);
+    }catch(e){}
   }
 
-  // logs & terminal
-  function addSystemLog(text, lvl='ok'){
-    const div = document.createElement('div');
-    div.className = 'log-line log-new';
-    const ts = new Date().toLocaleTimeString();
-    // color gradient effect via inline style (fake)
-    div.textContent = `[${ts}] ${text}`;
-    screen.appendChild(div);
-    screen.scrollTop = screen.scrollHeight;
-    // tiny highlight + remove after time
-    setTimeout(()=>div.classList.remove('log-new'), 900);
-    if(lvl === 'err') beep(220,0.07,0.08);
-    else if(lvl === 'warn') beep(440,0.03,0.03);
-    else beep(880,0.02,0.02);
-  }
-
-  // typing effect for special logs
-  function typeLog(text, speed=18){
-    const ts = new Date().toLocaleTimeString();
-    const container = document.createElement('div');
-    container.className = 'log-line';
-    screen.appendChild(container);
-    let idx=0;
-    const full = `[${ts}] ${text}`;
-    const t = setInterval(()=>{
-      container.textContent = full.slice(0, idx++);
+  // Logging
+  function addLog(text, lvl='ok', typed=false){
+    const el = document.createElement('div');
+    el.className = 'log';
+    if(lvl === 'err') el.style.color = 'var(--danger)';
+    else if(lvl === 'warn') el.style.color = '#ffbf47';
+    else if(lvl === 'info') el.style.color = 'var(--muted)';
+    // typed effect for emphasis
+    if(typed){
+      let i = 0; const full = `[${new Date().toLocaleTimeString()}] ${text}`;
+      el.textContent = '';
+      screen.appendChild(el); screen.scrollTop = screen.scrollHeight;
+      const t = setInterval(()=>{
+        el.textContent = full.slice(0, i++);
+        screen.scrollTop = screen.scrollHeight;
+        if(i>full.length) clearInterval(t);
+      }, 12);
+    } else {
+      el.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+      screen.appendChild(el);
       screen.scrollTop = screen.scrollHeight;
-      if(idx>full.length) clearInterval(t);
-    }, speed);
+    }
+    // small sound
+    if(lvl === 'err') beep(220,0.06,0.04);
+    else if(lvl === 'warn') beep(440,0.04,0.03);
+    else beep(1200,0.02,0.01);
+
+    // record event
+    session.events.push({t: Date.now(), type:'log', lvl, text});
   }
 
-  // fake metrics generator (based on mode + intensity)
-  function generateMetrics(){
-    const intv = parseInt(intensity.value,10);
-    const base = intv * 15000;
-    const pps = base + rnd(-base*0.2, base*0.6);
-    const lat = Math.max(8, Math.floor(50 - intv*3 + rnd(-10,20)));
-    const dr = (Math.random()*(intv/20)).toFixed(2);
-    const tp = Math.round((pps/1000) * (rnd(10,90)/100)); // fake mb/s
-    return {pps,lat,dr,tp};
+  // Metric generator based on intensity
+  function genMetrics(){
+    const I = parseInt(intensity.value,10);
+    const base = I * 20000;
+    const pps = Math.max(1000, Math.floor(base + rand(-base*0.2, base*0.5)));
+    const lat = Math.max(3, Math.floor(50 - I*2 + rand(-10, 20)));
+    const dr = Math.abs((Math.random() * (I/20))).toFixed(2);
+    const tp = Math.round((pps/1000) * (rand(10,100)/100));
+    return {pps, lat, dr, tp};
   }
 
-  // main loop when running
-  function startEngine(){
+  // Engine start/stop
+  function start(){
     if(running) return;
     running = true;
-    startBtn.textContent = '■ STOP';
-    sideStatus.textContent = 'Running (Fake)';
-    sideStatus.style.color = getComputedStyle(document.documentElement).getPropertyValue('--ok') || '#2ef29b';
-    addSystemLog(`>> Engine started [mode=${currentMode}] — spoof:${spoof.checked ? 'on':'off'}`, 'ok');
-    // tick interval adjusts with intensity
-    const tickMs = Math.max(180, 800 - (intensity.value*60));
-    tickInt = setInterval(()=>{
-      const m = generateMetrics();
-      ppsEl.textContent = comma(m.pps);
-      latEl.textContent = `${m.lat} ms`;
-      drEl.textContent = `${m.dr}%`;
-      tpEl.textContent = `${m.tp} Mb/s`;
-      // progress bar
-      const pct = Math.min(100, Math.round((m.pps / (intensity.value*40000)) * 100));
-      bar.style.width = `${pct}%`;
+    startBtn.style.display = 'none';
+    stopBtn.style.display = 'inline-block';
+    sideStatus.textContent = `Running: ${activeMode} (FAKE)`;
+    session.start = Date.now();
+    addLog(`Engine started (mode=${activeMode}) — spoof:${spoof.checked?'on':'off'}`, 'info', true);
+    loop = setInterval(() => {
+      const m = genMetrics();
+      ppsEl.textContent = fmt(m.pps);
+      latEl.textContent = m.lat + ' ms';
+      drEl.textContent = m.dr + '%';
+      tpEl.textContent = m.tp + ' Mb/s';
+      const pct = Math.min(100, Math.round((m.pps / (parseInt(intensity.value)*45000)) * 100));
+      bar.style.width = pct + '%';
 
-      // different log flavors per mode
-      switch(currentMode){
-        case 'DDoS':
-          if(Math.random() < 0.15) typeLog(`Sending flood burst: ${comma(rnd(10000, m.pps))} packets -> target (fake)`, 8);
-          else addSystemLog(`pps≈${comma(m.pps)} | latency ${m.lat}ms | drop ${m.dr}%`, 'ok');
-          break;
-        case 'Phá Server':
-          addSystemLog(`Injecting malformed payload chunk #${rnd(1000,9999)}...`, 'warn');
-          if(Math.random() < 0.12) addSystemLog('Kernel overflow simulated — CRASH (fake)', 'err');
-          break;
-        case 'Hack Acc':
-          addSystemLog(`Bruteforce attempt: ${comma(rnd(5000, m.pps))} tries/s — checking creds...`, 'ok');
-          if(Math.random() < 0.08) addSystemLog('Password found (demo) — user: admin | pass: *******', 'ok');
-          break;
-        case 'Chiếm Quyền':
-          addSystemLog('Attempting privilege escalation (simulated)...', 'warn');
-          if(Math.random() < 0.06) addSystemLog('Privilege escalation success — root shell (fake)', 'ok');
-          break;
-        case 'Keylogger':
-          addSystemLog('Injecting key-capture script into target process (sim)...', 'ok');
-          break;
-        case 'Backdoor':
-          addSystemLog('Uploading backdoor module to persistence store (fake)...', 'warn');
-          break;
-        default:
-          addSystemLog('Unknown mode — idle', 'warn');
+      // logs vary by mode
+      if(activeMode === 'DDoS'){
+        if(Math.random() < 0.2) addLog(`Burst sending: ${fmt(rand(10000,m.pps))} pkts -> ${$('#targetInput').value || 'target.fake'}`, 'ok');
+        if(Math.random() < 0.08) addLog('Target response timeout detected', 'warn');
+      } else if(activeMode === 'Phá Server'){
+        if(Math.random() < 0.18) addLog('Malformed chunk injected to kernel module (simulated)', 'warn', true);
+        if(Math.random() < 0.06) addLog('Kernel panic triggered (simulated) — crash', 'err', true);
+      } else if(activeMode === 'Hack Acc'){
+        addLog(`Credential spray ${fmt(rand(5000, m.pps))} attempts/sec (fake)`, 'ok');
+        if(Math.random() < 0.05) addLog('Password match (demo) — admin:********', 'ok');
+      } else if(activeMode === 'Chiếm Quyền'){
+        addLog('Privilege escalation attempt (simulated)...', 'warn');
+        if(Math.random() < 0.05) addLog('Privilege escalation success (demo)', 'ok');
+      } else if(activeMode === 'Keylogger'){
+        addLog('Key-capture hook installed in process (simulated)', 'ok');
+      } else if(activeMode === 'Backdoor'){
+        addLog('Backdoor module written to persistence store (simulated)', 'warn');
       }
 
-      // occasionally flash nodes
-      if(Math.random() < 0.12){
-        flashNode(rnd(1,nodeNum));
-      }
+      // occasional dramatic typed line
+      if(Math.random() < 0.06) addLog('>>> SYSTEM TRACE: ' + Math.random().toString(36).slice(2,10), 'info', true);
 
-    }, tickMs);
+      // small node flash
+      if(Math.random() < 0.12) flashRandomNode();
 
+    }, Math.max(120, 800 - parseInt(intensity.value)*60));
   }
 
-  function stopEngine(){
+  function stop(){
     if(!running) return;
     running = false;
-    startBtn.textContent = '▶ START';
-    sideStatus.textContent = 'Idle (Fake)';
-    sideStatus.style.color = getComputedStyle(document.documentElement).getPropertyValue('--muted') || '#9fb0c7';
-    addSystemLog('>> Engine stopped', 'ok');
-    clearInterval(tickInt);
-    // reset some metrics smoothly
-    ppsEl.textContent = '0';
-    latEl.textContent = '0 ms';
-    drEl.textContent = '0%';
-    tpEl.textContent = '0 Mb/s';
+    stopBtn.style.display = 'none';
+    startBtn.style.display = 'inline-block';
+    sideStatus.textContent = 'Idle (FAKE)';
+    addLog('Engine stopped', 'info');
+    clearInterval(loop);
+    // reset metrics
+    ppsEl.textContent = '0'; latEl.textContent = '0 ms'; drEl.textContent = '0%'; tpEl.textContent = '0 Mb/s';
     bar.style.width = '0%';
   }
 
-  startBtn.addEventListener('click', ()=>{
-    if(!running) startEngine(); else stopEngine();
+  // UI controls
+  startBtn.addEventListener('click', () => start());
+  stopBtn.addEventListener('click', () => stop());
+  burstBtn.addEventListener('click', () => {
+    addLog('Manual burst: synthetic surge created', 'warn', true);
+    for(let i=0;i<6;i++) setTimeout(()=>addLog('Burst log: '+Date.now(), 'ok'), i*80);
+  });
+  spamBtn.addEventListener('click', () => {
+    addLog('Spamming logs...', 'info');
+    for(let i=0;i<16;i++) setTimeout(()=>addLog('Spam #' + (i+1), 'ok'), i*60);
+  });
+  clearBtn.addEventListener('click', () => { screen.innerHTML=''; addLog('Terminal cleared', 'info'); });
+
+  // Export snapshot (downloads fake JSON)
+  exportBtn.addEventListener('click', () => {
+    const snap = {
+      sessionId: session.id,
+      startedAt: session.start,
+      mode: activeMode,
+      target: $('#targetInput').value || null,
+      intensity: intensity.value,
+      spoof: spoof.checked,
+      events: session.events.slice()
+    };
+    const blob = new Blob([JSON.stringify(snap, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `${session.id}_snapshot.json`; document.body.appendChild(a); a.click();
+    URL.revokeObjectURL(url); a.remove();
+    addLog('Snapshot exported (fake data)', 'info');
   });
 
-  // spam / clear
-  document.getElementById('clear').addEventListener('click', ()=>{ screen.innerHTML=''; addSystemLog('Terminal cleared', 'ok'); });
-  document.getElementById('spam').addEventListener('click', ()=>{
-    for(let i=0;i<6;i++){
-      setTimeout(()=> addSystemLog('Synthetic burst log: ' + (new Date().toLocaleTimeString()), 'ok'), i*120);
-    }
-  });
+  // Danger demo modal
+  dangerBtn.addEventListener('click', ()=>{ modal.classList.add('open'); });
+  modalCancel.addEventListener('click', ()=>{ modal.classList.remove('open'); addLog('Danger demo canceled', 'info'); });
+  modalOk.addEventListener('click', ()=>{ modal.classList.remove('open'); addLog('Danger demo activated (simulated) — visual only', 'warn'); });
 
-  // exploit quick buttons
-  document.querySelectorAll('.exploit .btn').forEach(b=>{
-    b.addEventListener('click', (e)=>{
-      const x = b.dataset.exp;
-      addSystemLog(`Exploit [${x}] executed (simulated)`, 'warn');
-      // play beep pattern
-      beep(900,0.03,0.02); setTimeout(()=>beep(600,0.04,0.03),120);
-    });
-  });
-
-  // modules
-  document.getElementById('module-stealth').addEventListener('click', ()=>{
-    addSystemLog('Stealth module toggled (fake) — low-noise mode', 'ok');
-  });
-  document.getElementById('module-noise').addEventListener('click', ()=>{
-    addSystemLog('Noise generator triggered (fake) — decoy streams active', 'warn');
-  });
-
-  // node flash to simulate activity
-  function flashNode(i){
-    const nodes = document.querySelectorAll('#nodes .node');
-    if(nodes.length && nodes[i-1]){
-      const n = nodes[i-1];
-      n.style.transition = 'box-shadow .25s, transform .15s';
-      n.style.boxShadow = '0 6px 18px rgba(138,255,255,0.08)';
-      n.style.transform = 'translateX(4px)';
-      setTimeout(()=>{ n.style.boxShadow=''; n.style.transform=''; }, 420);
-    }
+  // Node flash utility
+  function flashRandomNode(){
+    const dots = $$('.dot');
+    if(!dots.length) return;
+    const idx = rand(0, dots.length-1);
+    const d = dots[idx];
+    d.style.transform = 'scale(1.25) translateX(6px)';
+    d.style.boxShadow = '0 8px 26px rgba(138,255,255,0.12)';
+    setTimeout(()=>{ d.style.transform=''; d.style.boxShadow=''; }, 420);
   }
 
-  // initialize with some startup logs
-  addSystemLog('Initializing fake engine...', 'ok');
-  setTimeout(()=> addSystemLog('Loading modules: core, stealth, noise, logger', 'ok'), 350);
-  setTimeout(()=> addSystemLog('Ready. Choose a mode and press START (FAKE).', 'ok'), 800);
+  // stealth / noise module
+  $('#stealthBtn').addEventListener('click', ()=> addLog('Stealth module toggled (visual)', 'info'));
+  $('#noiseBtn').addEventListener('click', ()=> addLog('Noise generator active (visual)', 'warn'));
 
-  // nice UX: double-click mode to quick start
-  document.querySelectorAll('.mode-item').forEach(m=>{
-    m.addEventListener('dblclick', ()=>{
-      m.click(); startBtn.click();
-    });
+  // small theme switcher (purely cosmetic)
+  themeSel.addEventListener('change', () => {
+    const t = themeSel.value;
+    if(t==='neon'){ document.documentElement.style.setProperty('--accent-1','#00f5ff'); document.documentElement.style.setProperty('--accent-2','#ff3ec6'); document.documentElement.style.setProperty('--accent-3','#a0ff73'); }
+    if(t==='cyber'){ document.documentElement.style.setProperty('--accent-1','#7ef0ff'); document.documentElement.style.setProperty('--accent-2','#8a9bff'); document.documentElement.style.setProperty('--accent-3','#66ffea'); }
+    if(t==='aurora'){ document.documentElement.style.setProperty('--accent-1','#7afcff'); document.documentElement.style.setProperty('--accent-2','#ffd87a'); document.documentElement.style.setProperty('--accent-3','#8affc9'); }
+    addLog('Theme changed: ' + t, 'info');
   });
 
-  // ensure no network functions: freeze fetch & WebSocket (just to be safe in this UI)
+  // prevent accidental network usage: disable fetch & WebSocket in this page (soft)
   try{
-    Object.defineProperty(window, 'fetch', { value: ()=>{ console.warn('fetch disabled in fake UI'); return Promise.reject('disabled'); }});
-    if(window.WebSocket) window.WebSocket = function(){ console.warn('WebSocket disabled in fake UI'); };
-  }catch(e){ /* ignore in restricted envs */ }
+    window.fetch = function(){ console.warn('fetch disabled in fake UI'); return Promise.reject('disabled'); };
+    window.WebSocket = function(){ console.warn('WebSocket disabled in fake UI'); };
+  }catch(e){}
+
+  // quick startup logs
+  addLog('Elite UI initializing...', 'info');
+  setTimeout(()=>addLog('Loading visuals: glass, neon, radar', 'info'), 150);
+  setTimeout(()=>addLog('Ready — choose mode and START (FAKE)', 'info'), 450);
+
+  // double-click mode to quick start
+  modes.forEach(m => m.addEventListener('dblclick', () => { m.click(); start(); }));
 
 })();
 </script>
