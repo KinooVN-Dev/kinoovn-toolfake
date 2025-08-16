@@ -2,11 +2,11 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Ultimate Hacker Tool</title>
+<title>Fake Hacker Tool Pro Max</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
   body {
-    background: radial-gradient(circle at top, #050510, #1a0033, #000);
+    background: radial-gradient(circle at top, #050510, #120022, #000);
     font-family: 'Share Tech Mono', monospace;
     color: #0ff;
     padding: 20px;
@@ -14,19 +14,45 @@
     justify-content: center;
   }
   .tool {
-    width: 750px;
+    width: 780px;
     max-width: 95%;
     background: rgba(10,10,25,0.9);
     border: 2px solid #0ff;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 0 25px #0ff, inset 0 0 20px rgba(0,255,255,0.2);
+    box-shadow: 0 0 25px #0ff, inset 0 0 25px rgba(0,255,255,0.2);
   }
   h1 {
     text-align: center;
-    color: #00eaff;
-    text-shadow: 0 0 15px #00eaff, 0 0 30px #ff00ff;
+    font-size: 32px;
     letter-spacing: 3px;
+    position: relative;
+    color: #0ff;
+    text-shadow: 0 0 15px #0ff, 0 0 25px #f0f;
+    animation: flicker 2s infinite;
+    overflow: hidden;
+  }
+  h1::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    top: 0;
+    color: #f0f;
+    background: transparent;
+    text-shadow: -2px 0 magenta;
+    clip-path: inset(0 0 0 0);
+    animation: glitch 2s infinite;
+  }
+  @keyframes flicker {
+    0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
+    20%,24%,55% { opacity: 0.2; }
+  }
+  @keyframes glitch {
+    0% { clip-path: inset(0 0 90% 0); }
+    20% { clip-path: inset(10% 0 60% 0); transform: translateX(-3px); }
+    40% { clip-path: inset(40% 0 20% 0); transform: translateX(3px); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    100% { clip-path: inset(0 0 90% 0); }
   }
   label { display:block; margin-top:10px; color:#fff; }
   input, select {
@@ -36,34 +62,53 @@
   }
   button {
     width:100%; margin-top:15px; padding:12px;
-    background:linear-gradient(90deg,#0ff,#f0f);
+    background:linear-gradient(90deg,#0ff,#0f0,#ff0,#f0f);
+    background-size: 400% 400%;
+    animation: rainbow 6s linear infinite;
     color:#000; font-weight:bold; border:none;
     border-radius:8px; font-size:16px;
-    box-shadow:0 0 20px #0ff; cursor:pointer;
+    box-shadow:0 0 25px #0ff; cursor:pointer;
   }
-  button:hover { box-shadow:0 0 30px #f0f, 0 0 60px #0ff; }
+  button:hover { box-shadow:0 0 40px #f0f, 0 0 60px #0ff; }
+  @keyframes rainbow {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
   .progress {
     margin-top:15px; background:#111; border:1px solid #0ff;
-    border-radius:8px; height:18px; overflow:hidden;
+    border-radius:8px; height:20px; overflow:hidden;
+    box-shadow: inset 0 0 15px #0ff;
   }
   .progress-bar {
-    height:100%; width:0%; background:linear-gradient(90deg,#0ff,#f0f);
-    box-shadow:0 0 15px #0ff; transition:width 0.1s linear;
+    height:100%; width:0%;
+    background:linear-gradient(270deg,#0ff,#0f0,#ff0,#f0f,#0ff);
+    background-size:600% 600%;
+    animation: rainbow 4s linear infinite;
+    transition:width 0.2s linear;
   }
   .log-box {
-    margin-top:15px; background:#000; height:250px;
+    margin-top:15px; background:#000; height:280px;
     overflow-y:auto; border:1px solid #0ff; padding:10px;
-    border-radius:8px; box-shadow:inset 0 0 20px rgba(0,255,255,0.2);
+    border-radius:8px; box-shadow:inset 0 0 25px rgba(0,255,255,0.3);
     font-size:13px; color:#0f0;
   }
-  .log-line.ok { color:#00ff9f; }
-  .log-line.warn { color:#ffbf00; }
-  .log-line.err { color:#ff4d4d; text-shadow:0 0 8px #ff4d4d; }
+  .log-line {
+    margin-bottom:4px;
+    opacity:0; transform:translateX(-10px);
+    animation: fadeIn 0.6s forwards;
+    background: linear-gradient(90deg,#0ff,#0f0,#ff0,#f0f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes fadeIn {
+    to { opacity:1; transform:translateX(0); }
+  }
 </style>
 </head>
 <body>
   <div class="tool">
-    <h1>⚡ Ultimate Hacker Tool ⚡</h1>
+    <h1 data-text="⚡ HACKER TOOL PRO MAX ⚡">⚡ HACKER TOOL PRO MAX ⚡</h1>
     <label>Mục tiêu (fake)</label>
     <input id="target" placeholder="IP hoặc Domain...">
     <label>Chế độ</label>
@@ -94,46 +139,46 @@
 
   const logTemplates = {
     "DDoS": [
-      {msg:"Sending ###pps### packets/sec...", type:"ok"},
-      {msg:"Amplification factor engaged", type:"warn"},
-      {msg:"Target response timeout", type:"warn"},
-      {msg:"Connection reset by peer", type:"err"}
+      "Sending ###pps### packets/sec...",
+      "Amplification factor engaged",
+      "Target response timeout",
+      "Connection reset by peer"
     ],
     "Phá Server": [
-      {msg:"Injecting overload payload...", type:"ok"},
-      {msg:"Server CPU spike detected", type:"warn"},
-      {msg:"Crash exploit executed", type:"ok"},
-      {msg:"Kernel panic triggered!", type:"err"}
+      "Injecting overload payload...",
+      "Server CPU spike detected",
+      "Crash exploit executed",
+      "Kernel panic triggered!"
     ],
     "Hack Acc": [
-      {msg:"Bruteforce attempt with ###pps### passwords/sec", type:"ok"},
-      {msg:"Bypassing 2FA...", type:"warn"},
-      {msg:"Password match found!", type:"ok"},
-      {msg:"Access denied — retrying", type:"err"}
+      "Bruteforce attempt with ###pps### passwords/sec",
+      "Bypassing 2FA...",
+      "Password match found!",
+      "Access denied — retrying"
     ],
     "Chiếm Quyền Kiểm Soát": [
-      {msg:"Escalating privileges...", type:"ok"},
-      {msg:"Root access attempt...", type:"warn"},
-      {msg:"Privilege escalation success", type:"ok"},
-      {msg:"System locked admin session", type:"err"}
+      "Escalating privileges...",
+      "Root access attempt...",
+      "Privilege escalation success",
+      "System locked admin session"
     ],
     "Keylogger": [
-      {msg:"Injecting JS keylogger...", type:"ok"},
-      {msg:"Capturing keystrokes...", type:"ok"},
-      {msg:"Encryption bypass attempt", type:"warn"},
-      {msg:"Antivirus detected! Hiding...", type:"err"}
+      "Injecting JS keylogger...",
+      "Capturing keystrokes...",
+      "Encryption bypass attempt",
+      "Antivirus detected! Hiding..."
     ],
     "Cài Backdoor": [
-      {msg:"Uploading backdoor payload...", type:"ok"},
-      {msg:"Establishing reverse shell...", type:"warn"},
-      {msg:"Persistence registry modified", type:"ok"},
-      {msg:"Firewall blocked connection", type:"err"}
+      "Uploading backdoor payload...",
+      "Establishing reverse shell...",
+      "Persistence registry modified",
+      "Firewall blocked connection"
     ]
   };
 
-  function addLog(text, type){
+  function addLog(text){
     const line = document.createElement('div');
-    line.className = `log-line ${type}`;
+    line.className = `log-line`;
     line.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
     logBox.appendChild(line);
     logBox.scrollTop = logBox.scrollHeight;
@@ -155,8 +200,8 @@
       const logs = logTemplates[mode];
       const log = logs[Math.floor(Math.random()*logs.length)];
       const fakePps = randomRange(50000,200000);
-      addLog(log.msg.replace("###pps###", fakePps.toLocaleString()), log.type);
-    }, 400);
+      addLog(log.replace("###pps###", fakePps.toLocaleString()));
+    }, 500);
   }
 
   function stopFake(){
