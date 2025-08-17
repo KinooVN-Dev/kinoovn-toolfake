@@ -1,185 +1,112 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Anonymouns Hacker Console</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: black;
-    color: #0f0;
-    font-family: 'Share Tech Mono', monospace;
-    height: 100vh;
-    display: flex;
-  }
-  /* Sidebar */
-  .sidebar {
-    width: 80px;
-    background: #0a0a0a;
-    border-right: 2px solid #00ffea;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 0;
-    gap: 20px;
-    box-shadow: 0 0 20px #00ffea;
-  }
-  .sidebar i {
-    font-size: 28px;
-    color: #00ffe0;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .sidebar i:hover { color: #ff00ff; transform: scale(1.2); }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon CSS Playground</title>
+  <style>
+    :root {
+      --bg-1: 15, 15, 30;
+      --bg-2: 10, 10, 20;
+      --txt: 240, 240, 255;
+      --muted: 160, 170, 200;
+      --hue: 280;
+      --sat: 95%;
+      --glow: 0 0 20px hsl(var(--hue) var(--sat) 60%),
+               0 0 40px hsl(var(--hue) var(--sat) 55%),
+               0 0 80px hsl(var(--hue) var(--sat) 50%);
+      --radius: 22px;
+      --glass: rgba(255,255,255,.06);
+      --border: 1px solid rgba(255,255,255,.12);
+    }
 
-  /* Console Area */
-  .console {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  .banner {
-    color: #00fff7;
-    text-shadow: 0 0 15px #00fff7;
-    margin-bottom: 15px;
-    white-space: pre;
-    font-size: 12px;
-  }
-  .controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  input, select, button {
-    background: #111;
-    border: 1px solid #0ff;
-    color: #0ff;
-    padding: 8px;
-    border-radius: 4px;
-    font-family: inherit;
-  }
-  button {
-    background: linear-gradient(90deg,#00ffea,#ff00ff);
-    color: black; font-weight: bold; cursor: pointer;
-  }
-  button:hover { filter: brightness(1.3); }
-  .log-box {
-    flex: 1;
-    background: #000;
-    border: 1px solid #0ff;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 13px;
-    line-height: 1.4em;
-    box-shadow: inset 0 0 20px #0ff3;
-  }
-  .log-line { margin-bottom: 4px; }
-  .ok { color: #00ff9f; }
-  .warn { color: #ffbf00; }
-  .err { color: #ff4d4d; text-shadow:0 0 6px #ff4d4d; }
-  .matrix {
-    position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    z-index:-1; pointer-events:none;
-    background:black;
-  }
-  canvas { display:block; width:100%; height:100%; }
-</style>
+    #theme:checked ~ main { --hue: 165; }
+    #theme:checked ~ main { --bg-1: 8, 12, 14; --bg-2: 4, 8, 10; }
+
+    html, body { height: 100%; margin: 0; }
+    body {
+      color: rgb(var(--txt));
+      font-family: system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,0,130,.14), transparent 60%),
+                  radial-gradient(900px 600px at 90% 30%, rgba(0,170,255,.12), transparent 60%),
+                  linear-gradient(180deg, rgb(var(--bg-1)), rgb(var(--bg-2)) 70%);
+      overflow-x: hidden;
+    }
+
+    .fog {
+      position: fixed; inset: -20vmax;
+      background: conic-gradient(from 0deg,
+        hsla(var(--hue) var(--sat) 60%/.14),
+        hsla(calc(var(--hue) + 60) var(--sat) 60%/.14),
+        hsla(calc(var(--hue) + 120) var(--sat) 60%/.10),
+        transparent 55%);
+      filter: blur(60px) saturate(150%);
+      animation: swirl 28s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes swirl { to { transform: rotate(1turn); } }
+
+    header {
+      position: fixed; top:16px; left:16px; z-index:10;
+      display:flex; align-items:center; gap:12px;
+      padding:8px 12px; border-radius:999px;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.06);
+      border: var(--border);
+    }
+    .toggle { width:62px; height:32px; border-radius:999px; background:rgba(255,255,255,.08); border:var(--border); cursor:pointer; }
+    .knob { position:absolute; top:50%; left:6px; transform:translateY(-50%); width:22px; height:22px; border-radius:50%; background:white; box-shadow: var(--glow); transition:.25s; }
+    #theme:checked + label .knob { left:34px; }
+    .brand { font-weight:700; color: rgb(var(--muted)); }
+
+    .hero { min-height:100vh; display:grid; place-items:center; padding:100px 20px; text-align:center; }
+    .title { font-size: clamp(40px,7vw,96px); font-weight:900; color:transparent; -webkit-text-stroke:2px white; text-shadow: var(--glow); position:relative; }
+    .title::after { content: attr(data-text); position:absolute; inset:0; color:white; clip-path: inset(0 100% 0 0); animation: sweep 3.6s infinite; filter: drop-shadow(0 0 20px hsl(var(--hue) var(--sat) 60%)); }
+    @keyframes sweep { 50%{clip-path:inset(0 0 0 0);} 100%{clip-path:inset(0 100% 0 0);} }
+
+    .subtitle { color: rgb(var(--muted)); max-width:70ch; }
+
+    .btn {
+      padding:14px 20px; border-radius:16px; border: var(--border);
+      background: rgba(255,255,255,.08);
+      color:white; font-weight:700; text-decoration:none;
+      box-shadow:0 12px 24px rgba(0,0,0,.35);
+      transition:.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow:0 18px 36px rgba(0,0,0,.45),0 0 20px hsl(var(--hue) var(--sat) 60%); }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:40px; }
+    .card { background: var(--glass); border: var(--border); border-radius: var(--radius); padding:20px; transition:.25s; }
+    .card:hover { transform: translateY(-6px); }
+
+    footer { text-align:center; color:rgb(var(--muted)); padding:40px; }
+  </style>
 </head>
 <body>
-  <div class="sidebar">
-    <i class="fa-brands fa-android"></i>
-    <i class="fa-solid fa-skull"></i>
-    <i class="fa-solid fa-server"></i>
-    <i class="fa-solid fa-wifi"></i>
-    <i class="fa-solid fa-shield-halved"></i>
-    <i class="fa-solid fa-user-secret"></i>
-  </div>
-  <div class="console">
-    <div class="banner">
-██████╗ ██╗   ██╗██████╗  █████╗ ██████╗ ███████╗██████╗     
-██╔══██╗██║   ██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗    
-██████╔╝██║   ██║██████╔╝███████║██║  ██║█████╗  ██████╔╝    
-██╔═══╝ ██║   ██║██╔═══╝ ██╔══██║██║  ██║██╔══╝  ██╔══██╗    
-██║     ╚██████╔╝██║     ██║  ██║██████╔╝███████╗██║  ██║    
-╚═╝      ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝    
-    </div>
-    <div class="controls">
-      <input id="target" placeholder="Target...">
-      <select id="mode">
-        <option>DDoS</option>
-        <option>Phá Server</option>
-        <option>Hack Acc</option>
-        <option>Chiếm Quyền</option>
-        <option>Keylogger</option>
-        <option>Backdoor</option>
-      </select>
-      <button id="startBtn">RUN</button>
-    </div>
-    <div class="log-box" id="log"></div>
-  </div>
-  <div class="matrix"><canvas id="matrix"></canvas></div>
+  <input id="theme" type="checkbox" hidden>
+  <header>
+    <label class="toggle" for="theme"><span class="knob"></span></label>
+    <span class="brand">Neon CSS Playground</span>
+  </header>
 
-<script>
-  const logBox=document.getElementById('log');
-  const startBtn=document.getElementById('startBtn');
-  const modeSelect=document.getElementById('mode');
-  let running=false, interval;
+  <div class="fog"></div>
 
-  const templates={
-    "DDoS":["Launching UDP flood...","Packets: ###pps###","Bypassing firewall...","Connection reset!"],
-    "Phá Server":["Inject overload payload...","CPU Spike Detected","Exploit executed","Kernel panic!"],
-    "Hack Acc":["Bruteforce ###pps### pwd/s","Bypassing 2FA...","Password found!","Retrying..."],
-    "Chiếm Quyền":["Privilege escalation...","Root attempt...","Admin rights gained","System locked!"],
-    "Keylogger":["Deploying JS keylogger","Capturing keys...","Encryption bypass","AV detected!"],
-    "Backdoor":["Uploading payload","Reverse shell open","Persistence added","Firewall blocked"]
-  };
+  <main>
+    <section class="hero">
+      <div>
+        <h1 class="title" data-text="Xin chào, Neon!">Xin chào, Neon!</h1>
+        <p class="subtitle">Demo HTML + CSS với hiệu ứng neon, kính mờ và switch đổi màu.</p>
+        <a class="btn" href="#cards">Xem thẻ</a>
+      </div>
+    </section>
 
-  function addLog(txt,type="ok"){
-    const line=document.createElement('div');
-    line.className="log-line "+type;
-    line.textContent="["+new Date().toLocaleTimeString()+"] "+txt;
-    logBox.appendChild(line);
-    logBox.scrollTop=logBox.scrollHeight;
-  }
-  function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+    <section id="cards" class="grid">
+      <div class="card"><h3>✨ Neon</h3><p>Hiệu ứng phát sáng với text-shadow.</p></div>
+      <div class="card"><h3>🧊 Glassmorphism</h3><p>Kính mờ + border nhẹ.</p></div>
+      <div class="card"><h3>🎛️ Switch</h3><p>Click nút gạt đổi tông màu.</p></div>
+    </section>
+  </main>
 
-  startBtn.onclick=()=>{
-    if(running){ running=false; clearInterval(interval); startBtn.textContent="RUN"; return; }
-    running=true; startBtn.textContent="STOP";
-    interval=setInterval(()=>{
-      const mode=modeSelect.value;
-      const logs=templates[mode];
-      const msg=logs[rand(0,logs.length-1)];
-      const fake=msg.replace("###pps###",rand(50000,200000));
-      let type="ok";
-      if(fake.includes("reset")||fake.includes("blocked")||fake.includes("panic")) type="err";
-      else if(fake.includes("bypass")||fake.includes("firewall")||fake.includes("detected")) type="warn";
-      addLog(fake,type);
-    },400);
-  };
-
-  // Matrix rain effect
-  const c=document.getElementById("matrix"),ctx=c.getContext("2d");
-  c.height=window.innerHeight; c.width=window.innerWidth;
-  const letters="アァカサタナハマヤラワ0123456789$#%&";
-  const font=14,cols=c.width/font;
-  const drops=Array(Math.floor(cols)).fill(1);
-  function draw(){
-    ctx.fillStyle="rgba(0,0,0,0.05)";
-    ctx.fillRect(0,0,c.width,c.height);
-    ctx.fillStyle="#0f0"; ctx.font=font+"px monospace";
-    for(let i=0;i<drops.length;i++){
-      const text=letters.charAt(Math.random()*letters.length);
-      ctx.fillText(text,i*font,drops[i]*font);
-      if(drops[i]*font>c.height && Math.random()>0.975) drops[i]=0;
-      drops[i]++;
-    }
-  }
-  setInterval(draw,33);
-</script>
+  <footer>Made with ❤️ bằng HTML + CSS</footer>
 </body>
 </html>
