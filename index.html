@@ -1,112 +1,199 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Neon CSS Playground</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Landing Page</title>
   <style>
-    :root {
-      --bg-1: 15, 15, 30;
-      --bg-2: 10, 10, 20;
-      --txt: 240, 240, 255;
-      --muted: 160, 170, 200;
-      --hue: 280;
-      --sat: 95%;
-      --glow: 0 0 20px hsl(var(--hue) var(--sat) 60%),
-               0 0 40px hsl(var(--hue) var(--sat) 55%),
-               0 0 80px hsl(var(--hue) var(--sat) 50%);
-      --radius: 22px;
-      --glass: rgba(255,255,255,.06);
-      --border: 1px solid rgba(255,255,255,.12);
+    /* ====== RESET ====== */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Segoe UI",sans-serif;
+      background: radial-gradient(circle at 20% 30%, #0f0c29, #302b63, #24243e);
+      color:#fff;
+      overflow-x:hidden;
+      min-height:100vh;
     }
 
-    #theme:checked ~ main { --hue: 165; }
-    #theme:checked ~ main { --bg-1: 8, 12, 14; --bg-2: 4, 8, 10; }
-
-    html, body { height: 100%; margin: 0; }
-    body {
-      color: rgb(var(--txt));
-      font-family: system-ui, sans-serif;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,0,130,.14), transparent 60%),
-                  radial-gradient(900px 600px at 90% 30%, rgba(0,170,255,.12), transparent 60%),
-                  linear-gradient(180deg, rgb(var(--bg-1)), rgb(var(--bg-2)) 70%);
-      overflow-x: hidden;
+    /* ====== PARALLAX BACKGROUND ====== */
+    .parallax{
+      position:fixed;
+      width:100%;height:100%;
+      top:0;left:0;
+      overflow:hidden;
+      z-index:-2;
+    }
+    .parallax span{
+      position:absolute;
+      width:200px;height:200px;
+      background:rgba(255,255,255,.1);
+      border-radius:50%;
+      animation: float 20s linear infinite;
+    }
+    .parallax span:nth-child(1){left:10%;top:20%;animation-duration:15s;}
+    .parallax span:nth-child(2){left:70%;top:10%;animation-duration:25s;}
+    .parallax span:nth-child(3){left:40%;top:70%;animation-duration:18s;}
+    .parallax span:nth-child(4){left:85%;top:60%;animation-duration:22s;}
+    @keyframes float{
+      0%{transform:translateY(0);}
+      50%{transform:translateY(-80px);}
+      100%{transform:translateY(0);}
     }
 
-    .fog {
-      position: fixed; inset: -20vmax;
-      background: conic-gradient(from 0deg,
-        hsla(var(--hue) var(--sat) 60%/.14),
-        hsla(calc(var(--hue) + 60) var(--sat) 60%/.14),
-        hsla(calc(var(--hue) + 120) var(--sat) 60%/.10),
-        transparent 55%);
-      filter: blur(60px) saturate(150%);
-      animation: swirl 28s linear infinite;
-      mix-blend-mode: screen;
+    /* ====== HEADER ====== */
+    header{
+      padding:20px;
+      position:fixed;
+      width:100%;
+      top:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.3);
+      z-index:10;
     }
-    @keyframes swirl { to { transform: rotate(1turn); } }
-
-    header {
-      position: fixed; top:16px; left:16px; z-index:10;
-      display:flex; align-items:center; gap:12px;
-      padding:8px 12px; border-radius:999px;
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,.06);
-      border: var(--border);
+    header h1{
+      font-size:24px;
+      text-shadow:0 0 10px #0ff,0 0 20px #0ff;
     }
-    .toggle { width:62px; height:32px; border-radius:999px; background:rgba(255,255,255,.08); border:var(--border); cursor:pointer; }
-    .knob { position:absolute; top:50%; left:6px; transform:translateY(-50%); width:22px; height:22px; border-radius:50%; background:white; box-shadow: var(--glow); transition:.25s; }
-    #theme:checked + label .knob { left:34px; }
-    .brand { font-weight:700; color: rgb(var(--muted)); }
-
-    .hero { min-height:100vh; display:grid; place-items:center; padding:100px 20px; text-align:center; }
-    .title { font-size: clamp(40px,7vw,96px); font-weight:900; color:transparent; -webkit-text-stroke:2px white; text-shadow: var(--glow); position:relative; }
-    .title::after { content: attr(data-text); position:absolute; inset:0; color:white; clip-path: inset(0 100% 0 0); animation: sweep 3.6s infinite; filter: drop-shadow(0 0 20px hsl(var(--hue) var(--sat) 60%)); }
-    @keyframes sweep { 50%{clip-path:inset(0 0 0 0);} 100%{clip-path:inset(0 100% 0 0);} }
-
-    .subtitle { color: rgb(var(--muted)); max-width:70ch; }
-
-    .btn {
-      padding:14px 20px; border-radius:16px; border: var(--border);
-      background: rgba(255,255,255,.08);
-      color:white; font-weight:700; text-decoration:none;
-      box-shadow:0 12px 24px rgba(0,0,0,.35);
-      transition:.2s;
+    nav a{
+      margin:0 12px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:bold;
+      position:relative;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow:0 18px 36px rgba(0,0,0,.45),0 0 20px hsl(var(--hue) var(--sat) 60%); }
+    nav a::after{
+      content:'';
+      position:absolute;
+      width:0;height:2px;
+      bottom:-4px;left:0;
+      background:#0ff;
+      transition:.3s;
+    }
+    nav a:hover::after{width:100%;}
 
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:40px; }
-    .card { background: var(--glass); border: var(--border); border-radius: var(--radius); padding:20px; transition:.25s; }
-    .card:hover { transform: translateY(-6px); }
+    /* ====== HERO ====== */
+    .hero{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      height:100vh;
+      position:relative;
+    }
+    .hero h2{
+      font-size:60px;
+      text-transform:uppercase;
+      letter-spacing:5px;
+      color:transparent;
+      -webkit-text-stroke:1px #fff;
+      background:linear-gradient(90deg,#ff00cc,#3333ff,#00ffcc);
+      background-clip:text;
+      -webkit-background-clip:text;
+      animation: shine 5s linear infinite;
+    }
+    @keyframes shine{
+      0%{background-position:0%;}
+      100%{background-position:200%;}
+    }
+    .hero p{
+      font-size:20px;
+      color:#ccc;
+      margin:20px 0;
+    }
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 28px;
+      background:linear-gradient(90deg,#00f260,#0575e6);
+      border-radius:30px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      transition:.3s;
+      box-shadow:0 0 20px #0575e6;
+    }
+    .btn:hover{transform:scale(1.1);}
 
-    footer { text-align:center; color:rgb(var(--muted)); padding:40px; }
+    /* ====== FEATURE CARDS ====== */
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+      padding:100px 40px;
+    }
+    .card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:20px;
+      padding:30px;
+      text-align:center;
+      transition:.5s;
+      transform-style:preserve-3d;
+    }
+    .card:hover{
+      transform:translateY(-15px) rotateY(10deg);
+      box-shadow:0 20px 40px rgba(0,255,255,.3);
+    }
+    .card h3{margin-bottom:15px;text-shadow:0 0 10px #0ff;}
+    .card p{color:#aaa;}
+
+    /* ====== FOOTER ====== */
+    footer{
+      text-align:center;
+      padding:40px 20px;
+      background:rgba(0,0,0,.4);
+      border-top:1px solid rgba(255,255,255,.1);
+      color:#aaa;
+    }
   </style>
 </head>
 <body>
-  <input id="theme" type="checkbox" hidden>
+  <div class="parallax">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
   <header>
-    <label class="toggle" for="theme"><span class="knob"></span></label>
-    <span class="brand">Neon CSS Playground</span>
+    <h1>⚡ NeonPage</h1>
+    <nav>
+      <a href="#">Trang chủ</a>
+      <a href="#features">Tính năng</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
   </header>
 
-  <div class="fog"></div>
+  <section class="hero">
+    <h2>Xin chào Thế Giới</h2>
+    <p>Trang web neon lung linh, hiệu ứng xịn xò chỉ với HTML + CSS</p>
+    <a href="#features" class="btn">Khám phá ngay</a>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div>
-        <h1 class="title" data-text="Xin chào, Neon!">Xin chào, Neon!</h1>
-        <p class="subtitle">Demo HTML + CSS với hiệu ứng neon, kính mờ và switch đổi màu.</p>
-        <a class="btn" href="#cards">Xem thẻ</a>
-      </div>
-    </section>
+  <section id="features" class="features">
+    <div class="card">
+      <h3>✨ Hiệu ứng Neon</h3>
+      <p>Chữ, nút và border phát sáng bằng text-shadow, box-shadow.</p>
+    </div>
+    <div class="card">
+      <h3>🌌 Parallax</h3>
+      <p>Nền động với các vòng tròn bay bổng như thiên hà.</p>
+    </div>
+    <div class="card">
+      <h3>🧊 Glassmorphism</h3>
+      <p>Thẻ có nền mờ + viền trong suốt cực hiện đại.</p>
+    </div>
+    <div class="card">
+      <h3>🎛️ Hover 3D</h3>
+      <p>Khi rê chuột thẻ nghiêng 3D + đổ bóng neon.</p>
+    </div>
+  </section>
 
-    <section id="cards" class="grid">
-      <div class="card"><h3>✨ Neon</h3><p>Hiệu ứng phát sáng với text-shadow.</p></div>
-      <div class="card"><h3>🧊 Glassmorphism</h3><p>Kính mờ + border nhẹ.</p></div>
-      <div class="card"><h3>🎛️ Switch</h3><p>Click nút gạt đổi tông màu.</p></div>
-    </section>
-  </main>
-
-  <footer>Made with ❤️ bằng HTML + CSS</footer>
+  <footer id="contact">
+    <p>Làm bằng ❤️ với HTML + CSS. © 2025 NeonPage</p>
+  </footer>
 </body>
 </html>
