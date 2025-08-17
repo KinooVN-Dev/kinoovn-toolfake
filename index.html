@@ -1,199 +1,371 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neon Landing Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EnderDragon Cloud — Minecraft Hosting</title>
+  <meta name="description" content="Minecraft hosting siêu nhanh: RAM cao, CPU mạnh, NVMe, chống DDoS, 1‑click Paper/Spigot/Fabric/Forge. Mua ngay!" />
   <style>
-    /* ====== RESET ====== */
-    *{margin:0;padding:0;box-sizing:border-box;}
+    /* =============================
+       🎨 Design Tokens / Theme
+    ============================= */
+    :root{
+      --bg-1:#0b0f14;           /* deep space */
+      --bg-2:#0d1220;           /* night */
+      --ink:#e8f0ff;            /* text */
+      --muted:#a9b5d1;          /* secondary */
+      --line:rgba(255,255,255,.12);
+
+      --emerald:#2ecc71;   /* grass */
+      --diamond:#00d7ff;   /* diamond */
+      --amethyst:#8a2be2;  /* end */
+      --lava:#ff6a00;      /* lava */
+
+      --brand-1: var(--diamond);
+      --brand-2: var(--amethyst);
+
+      --radius-2: 16px;
+      --radius-3: 24px;
+
+      --shadow-1: 0 10px 30px rgba(0,0,0,.5);
+      --shadow-2: 0 20px 60px rgba(0,0,0,.6);
+
+      --glow-brand: 0 0 24px rgba(0,215,255,.45), 0 0 64px rgba(138,43,226,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      font-family:"Segoe UI",sans-serif;
-      background: radial-gradient(circle at 20% 30%, #0f0c29, #302b63, #24243e);
-      color:#fff;
+      margin:0;
+      color:var(--ink);
+      font:16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial;
+      background:
+        radial-gradient(1000px 600px at 10% 10%, rgba(0,215,255,.08), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(138,43,226,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
       overflow-x:hidden;
-      min-height:100vh;
     }
 
-    /* ====== PARALLAX BACKGROUND ====== */
-    .parallax{
-      position:fixed;
-      width:100%;height:100%;
-      top:0;left:0;
-      overflow:hidden;
-      z-index:-2;
-    }
-    .parallax span{
-      position:absolute;
-      width:200px;height:200px;
-      background:rgba(255,255,255,.1);
-      border-radius:50%;
-      animation: float 20s linear infinite;
-    }
-    .parallax span:nth-child(1){left:10%;top:20%;animation-duration:15s;}
-    .parallax span:nth-child(2){left:70%;top:10%;animation-duration:25s;}
-    .parallax span:nth-child(3){left:40%;top:70%;animation-duration:18s;}
-    .parallax span:nth-child(4){left:85%;top:60%;animation-duration:22s;}
-    @keyframes float{
-      0%{transform:translateY(0);}
-      50%{transform:translateY(-80px);}
-      100%{transform:translateY(0);}
+    a{color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 18px}
+
+    /* grid dots bg */
+    .grid-bg{position:relative}
+    .grid-bg::before{
+      content:""; position:absolute; inset:0; z-index:-1; opacity:.12;
+      background-image: radial-gradient(circle at 1px 1px, #8fb3ff 1px, transparent 0);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(180deg, transparent, #000 10%, #000 60%, transparent 100%);
     }
 
-    /* ====== HEADER ====== */
-    header{
-      padding:20px;
-      position:fixed;
-      width:100%;
-      top:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      backdrop-filter:blur(10px);
-      background:rgba(0,0,0,.3);
-      z-index:10;
-    }
-    header h1{
-      font-size:24px;
-      text-shadow:0 0 10px #0ff,0 0 20px #0ff;
-    }
-    nav a{
-      margin:0 12px;
-      text-decoration:none;
-      color:#fff;
-      font-weight:bold;
-      position:relative;
-    }
-    nav a::after{
-      content:'';
-      position:absolute;
-      width:0;height:2px;
-      bottom:-4px;left:0;
-      background:#0ff;
-      transition:.3s;
-    }
-    nav a:hover::after{width:100%;}
+    /* =============================
+       🧭 Header / Nav
+    ============================= */
+    header{position:sticky; top:0; z-index:30; backdrop-filter: blur(10px); background:linear-gradient(180deg, rgba(13,18,32,.7), rgba(13,18,32,.35)); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.4px}
+    .logo{width:34px; height:34px; border-radius:8px; background: conic-gradient(from 0deg, var(--brand-1), var(--brand-2)); box-shadow: var(--glow-brand)}
+    .nav a{ text-decoration:none; color:var(--ink); opacity:.85; margin-left:16px; font-weight:600 }
+    .nav a:hover{ opacity:1 }
 
-    /* ====== HERO ====== */
-    .hero{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-      height:100vh;
-      position:relative;
+    .cta{display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); box-shadow: var(--shadow-1)}
+
+    /* =============================
+       🦾 Hero
+    ============================= */
+    .hero{ position:relative; padding:80px 0 40px }
+    .hero .container{ display:grid; grid-template-columns: 1.1fr .9fr; gap:26px; align-items:center }
+    @media (max-width: 920px){ .hero .container{ grid-template-columns: 1fr } }
+
+    .title{
+      font-size: clamp(36px, 6.6vw, 84px);
+      line-height:.95; font-weight:1000; letter-spacing:.5px; margin:0 0 12px;
+      color:transparent; -webkit-text-stroke: 2px rgba(255,255,255,.95);
+      position:relative; text-shadow: var(--glow-brand);
     }
-    .hero h2{
-      font-size:60px;
-      text-transform:uppercase;
-      letter-spacing:5px;
-      color:transparent;
-      -webkit-text-stroke:1px #fff;
-      background:linear-gradient(90deg,#ff00cc,#3333ff,#00ffcc);
-      background-clip:text;
-      -webkit-background-clip:text;
-      animation: shine 5s linear infinite;
-    }
-    @keyframes shine{
-      0%{background-position:0%;}
-      100%{background-position:200%;}
-    }
-    .hero p{
-      font-size:20px;
-      color:#ccc;
-      margin:20px 0;
-    }
+    .title::after{ content: attr(data-fill); position:absolute; inset:0; color:white; clip-path: inset(0 100% 0 0); animation: sweep 4s ease-in-out infinite }
+    @keyframes sweep{ 50%{ clip-path: inset(0 0 0 0) } 100%{ clip-path: inset(0 100% 0 0) } }
+
+    .subtitle{ color:var(--muted); max-width: 70ch; margin-bottom:18px }
+
+    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap }
     .btn{
-      display:inline-block;
-      margin-top:20px;
-      padding:12px 28px;
-      background:linear-gradient(90deg,#00f260,#0575e6);
-      border-radius:30px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:bold;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      transition:.3s;
-      box-shadow:0 0 20px #0575e6;
+      --ring: rgba(0,215,255,.45);
+      display:inline-block; text-decoration:none; color:white; font-weight:800; letter-spacing:.5px;
+      padding:14px 18px; border-radius:14px; border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: var(--shadow-1), 0 0 0 0 var(--ring); transition: transform .18s ease, box-shadow .18s ease;
     }
-    .btn:hover{transform:scale(1.1);}
+    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2), 0 0 0 10px var(--ring) }
+    .btn.primary{ background: linear-gradient(90deg, var(--brand-1), var(--brand-2)); border: none }
 
-    /* ====== FEATURE CARDS ====== */
-    .features{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-      padding:100px 40px;
+    /* showcase figure */
+    .mock{
+      position:relative; border-radius: var(--radius-3); overflow:hidden; border:1px solid var(--line);
+      background: radial-gradient(600px 300px at 10% 10%, rgba(0,215,255,.12), transparent 60%), rgba(255,255,255,.04);
+      min-height: 320px; box-shadow: var(--shadow-2)
     }
-    .card{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.2);
-      border-radius:20px;
-      padding:30px;
-      text-align:center;
-      transition:.5s;
-      transform-style:preserve-3d;
-    }
-    .card:hover{
-      transform:translateY(-15px) rotateY(10deg);
-      box-shadow:0 20px 40px rgba(0,255,255,.3);
-    }
-    .card h3{margin-bottom:15px;text-shadow:0 0 10px #0ff;}
-    .card p{color:#aaa;}
+    .mock .chip{ position:absolute; inset:auto 16px 16px auto; padding:8px 12px; border-radius:999px; background: rgba(0,0,0,.45); border:1px solid var(--line); font-weight:700 }
+    .bars{ position:absolute; inset:0; display:grid; grid-template-columns: repeat(12, 1fr); align-items:end; gap:10px; padding:16px }
+    .bar{ height: 20%; background: linear-gradient(180deg, rgba(0,215,255,.6), rgba(138,43,226,.5)); border-radius: 10px; filter: drop-shadow(0 10px 24px rgba(0,215,255,.35)) }
+    .bar:nth-child(3n){ height: 60% }
+    .bar:nth-child(4n){ height: 40% }
+    .bar:nth-child(5n){ height: 75% }
 
-    /* ====== FOOTER ====== */
-    footer{
-      text-align:center;
-      padding:40px 20px;
-      background:rgba(0,0,0,.4);
-      border-top:1px solid rgba(255,255,255,.1);
-      color:#aaa;
-    }
+    /* =============================
+       💎 Plans
+    ============================= */
+    .section{ padding: 28px 0 }
+    .section h2{ font-size: clamp(24px, 3.4vw, 40px); margin:0 0 10px; text-shadow: var(--glow-brand) }
+    .section p.lead{ color: var(--muted); margin:0 0 24px }
+
+    .price-toggle{ display:flex; align-items:center; gap:10px; margin-bottom:16px }
+    .switch{ position:relative; width:64px; height:32px; border-radius:999px; background: rgba(255,255,255,.1); border:1px solid var(--line) }
+    .switch .knob{ position:absolute; top:50%; left:6px; transform:translateY(-50%); width:22px; height:22px; border-radius:50%; background:white; transition:left .2s ease; box-shadow: var(--glow-brand) }
+    #yearly:checked + .switch .knob{ left:36px }
+    .save{ font-weight:800; color:#7ef0ff }
+
+    .plans{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px }
+    .plan{ grid-column: span 12; border:1px solid var(--line); border-radius: var(--radius-3); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); padding:18px; position:relative; overflow:hidden }
+    @media (min-width: 720px){ .plan{ grid-column: span 6 } }
+    @media (min-width: 1024px){ .plan{ grid-column: span 4 } }
+
+    .badge{ position:absolute; right:16px; top:16px; padding:6px 10px; border-radius:999px; background: linear-gradient(90deg, var(--brand-1), var(--brand-2)); font-weight:900 }
+    .plan h3{ margin:6px 0 4px }
+    .specs{ color: var(--muted); margin:0 0 10px }
+
+    .price{ font-size:28px; font-weight:1000; letter-spacing:.4px; margin:8px 0 14px }
+    .price .per{ font-size:14px; color: var(--muted); font-weight:700 }
+    /* price toggle text */
+    #yearly:not(:checked) ~ .plans .p-monthly{ display:inline }
+    #yearly:not(:checked) ~ .plans .p-yearly{ display:none }
+    #yearly:checked ~ .plans .p-monthly{ display:none }
+    #yearly:checked ~ .plans .p-yearly{ display:inline }
+
+    .features{ display:grid; gap:8px; margin:10px 0 14px; padding-left:0; list-style:none }
+    .features li{ display:flex; gap:8px; align-items:center }
+    .dot{ width:10px; height:10px; border-radius:2px; background: linear-gradient(90deg, var(--brand-1), var(--brand-2)) }
+
+    .plan .buy{ display:inline-block; text-decoration:none; font-weight:900; padding:12px 14px; border-radius:14px; background: linear-gradient(90deg, var(--brand-1), var(--brand-2)); color:white; box-shadow: var(--glow-brand) }
+    .plan:hover{ transform: translateY(-4px); box-shadow: var(--shadow-1) }
+
+    /* =============================
+       🛡️ Trust / Why Us
+    ============================= */
+    .trust{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px }
+    .stat{ grid-column: span 12; border:1px solid var(--line); background: rgba(255,255,255,.04); border-radius: var(--radius-3); padding:16px }
+    @media (min-width: 900px){ .stat{ grid-column: span 4 } }
+    .stat h3{ font-size:28px; margin:0 0 4px }
+    .stat p{ color: var(--muted); margin:0 }
+
+    /* =============================
+       ❓ FAQ
+    ============================= */
+    details{ border:1px solid var(--line); border-radius:16px; padding:14px 16px; background: rgba(255,255,255,.04) }
+    details + details{ margin-top:10px }
+    summary{ cursor:pointer; font-weight:800 }
+    details p{ color: var(--muted); margin:8px 0 0 }
+
+    /* =============================
+       📬 Footer
+    ============================= */
+    footer{ margin-top:40px; border-top:1px solid var(--line); background: rgba(255,255,255,.03) }
+    .foot{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; padding:20px 0 }
+    .foot > div{ grid-column: span 12 }
+    @media (min-width: 900px){ .foot > div{ grid-column: span 4 } }
+    .tiny{ color: var(--muted); font-size:13px }
+
+    /* fun accent */
+    .accent-bar{ height:10px; background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--lava)) }
   </style>
 </head>
 <body>
-  <div class="parallax">
-    <span></span><span></span><span></span><span></span>
-  </div>
-
+  <!-- ============================= -->
+  <!-- Header / Nav                  -->
+  <!-- ============================= -->
   <header>
-    <h1>⚡ NeonPage</h1>
-    <nav>
-      <a href="#">Trang chủ</a>
-      <a href="#features">Tính năng</a>
-      <a href="#contact">Liên hệ</a>
-    </nav>
+    <div class="container nav">
+      <div class="brand"><span class="logo" aria-hidden="true"></span> EnderDragon Cloud</div>
+      <nav>
+        <a href="#plans">Gói cước</a>
+        <a href="#why">Ưu điểm</a>
+        <a href="#faq">FAQ</a>
+        <a class="cta" href="#buy">Mua ngay</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h2>Xin chào Thế Giới</h2>
-    <p>Trang web neon lung linh, hiệu ứng xịn xò chỉ với HTML + CSS</p>
-    <a href="#features" class="btn">Khám phá ngay</a>
-  </section>
-
-  <section id="features" class="features">
-    <div class="card">
-      <h3>✨ Hiệu ứng Neon</h3>
-      <p>Chữ, nút và border phát sáng bằng text-shadow, box-shadow.</p>
-    </div>
-    <div class="card">
-      <h3>🌌 Parallax</h3>
-      <p>Nền động với các vòng tròn bay bổng như thiên hà.</p>
-    </div>
-    <div class="card">
-      <h3>🧊 Glassmorphism</h3>
-      <p>Thẻ có nền mờ + viền trong suốt cực hiện đại.</p>
-    </div>
-    <div class="card">
-      <h3>🎛️ Hover 3D</h3>
-      <p>Khi rê chuột thẻ nghiêng 3D + đổ bóng neon.</p>
+  <!-- ============================= -->
+  <!-- Hero                          -->
+  <!-- ============================= -->
+  <section class="hero grid-bg">
+    <div class="container">
+      <div>
+        <h1 class="title" data-fill="Minecraft Hosting siêu nhanh">Minecraft Hosting siêu nhanh</h1>
+        <p class="subtitle">Hiệu năng mạnh mẽ cho mọi máy chủ: Paper/Spigot, Fabric/Forge, modpack, plugin — SSD NVMe, CPU xung cao, chống DDoS, backup tự động. Triển khai trong chớp mắt ⚡</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#plans">Xem bảng giá</a>
+          <a class="btn" href="#why">Vì sao chọn chúng tôi</a>
+        </div>
+      </div>
+      <figure class="mock" aria-label="Graph performance mockup">
+        <div class="bars">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+        <figcaption class="chip">NVMe + CPU 4.8GHz</figcaption>
+      </figure>
     </div>
   </section>
 
-  <footer id="contact">
-    <p>Làm bằng ❤️ với HTML + CSS. © 2025 NeonPage</p>
+  <div class="accent-bar"></div>
+
+  <!-- ============================= -->
+  <!-- Plans                         -->
+  <!-- ============================= -->
+  <section id="plans" class="section">
+    <div class="container">
+      <h2>Bảng giá minh bạch</h2>
+      <p class="lead">Thanh toán theo tháng hoặc năm (giảm <strong>15%</strong>). Phù hợp từ server bạn bè đến network nhiều hub.</p>
+
+      <div class="price-toggle" id="buy">
+        <label for="yearly">Trả theo tháng</label>
+        <input id="yearly" type="checkbox" hidden>
+        <label class="switch" for="yearly" aria-label="Bật trả theo năm"><span class="knob"></span></label>
+        <span>Trả theo năm <span class="save">– tiết kiệm 15%</span></span>
+      </div>
+
+      <div class="plans">
+        <!-- BASIC -->
+        <article class="plan">
+          <span class="badge">Phổ biến</span>
+          <h3>Basic Host</h3>
+          <p class="specs">Phù hợp server bạn bè, SMP nhỏ, 5–20 người</p>
+          <div class="price">
+            <span class="p-monthly">89.000đ</span>
+            <span class="p-yearly"><s>89.000đ</s> 75.650đ</span>
+            <span class="per">/tháng</span>
+          </div>
+          <ul class="features">
+            <li><span class="dot"></span> 2–4 GB RAM tuỳ chọn</li>
+            <li><span class="dot"></span> CPU 4.5–4.8 GHz (Hiệu năng đơn luồng)</li>
+            <li><span class="dot"></span> 20 GB NVMe SSD</li>
+            <li><span class="dot"></span> Miễn phí chống DDoS</li>
+            <li><span class="dot"></span> 1‑click Paper/Spigot/Fabric/Forge</li>
+            <li><span class="dot"></span> Backup tự động mỗi ngày</li>
+          </ul>
+          <a class="buy" href="#">Mua Basic</a>
+        </article>
+
+        <!-- GOLD -->
+        <article class="plan">
+          <span class="badge">Best Value</span>
+          <h3>Gold Host</h3>
+          <p class="specs">Server cộng đồng, plugin/mod vừa, 20–60 người</p>
+          <div class="price">
+            <span class="p-monthly">159.000đ</span>
+            <span class="p-yearly"><s>159.000đ</s> 135.150đ</span>
+            <span class="per">/tháng</span>
+          </div>
+          <ul class="features">
+            <li><span class="dot"></span> 6–8 GB RAM tuỳ chọn</li>
+            <li><span class="dot"></span> CPU 4.8 GHz + ưu tiên luồng</li>
+            <li><span class="dot"></span> 40 GB NVMe SSD</li>
+            <li><span class="dot"></span> Băng thông không giới hạn</li>
+            <li><span class="dot"></span> Bảng điều khiển thân thiện (VN)</li>
+            <li><span class="dot"></span> Hỗ trợ modpack CurseForge</li>
+          </ul>
+          <a class="buy" href="#">Mua Gold</a>
+        </article>
+
+        <!-- MEDIUM/PRO -->
+        <article class="plan">
+          <span class="badge">Pro</span>
+          <h3>Medium / Pro Host</h3>
+          <p class="specs">Nhiều hub, plugin nặng, 60–150+ người</p>
+          <div class="price">
+            <span class="p-monthly">289.000đ</span>
+            <span class="p-yearly"><s>289.000đ</s> 245.650đ</span>
+            <span class="per">/tháng</span>
+          </div>
+          <ul class="features">
+            <li><span class="dot"></span> 12–16 GB RAM tuỳ chọn</li>
+            <li><span class="dot"></span> CPU thế hệ mới (P-cores)</li>
+            <li><span class="dot"></span> 80 GB NVMe SSD</li>
+            <li><span class="dot"></span> Dedicated IP + mở port</li>
+            <li><span class="dot"></span> Sao lưu 3 phiên bản/gần nhất</li>
+            <li><span class="dot"></span> Ưu tiên hỗ trợ 24/7</li>
+          </ul>
+          <a class="buy" href="#">Mua Pro</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- Why Us                        -->
+  <!-- ============================= -->
+  <section id="why" class="section grid-bg">
+    <div class="container">
+      <h2>Vì sao chọn EnderDragon Cloud?</h2>
+      <p class="lead">Tập trung tối ưu cho Minecraft: xung đơn luồng cao, NVMe tốc độ đọc/ghi lớn, network ổn định chống DDoS.</p>
+
+      <div class="trust">
+        <div class="stat">
+          <h3>99.9% Uptime</h3>
+          <p>Hạ tầng được giám sát liên tục, downtime gần như bằng 0.</p>
+        </div>
+        <div class="stat">
+          <h3>1‑Click Deploy</h3>
+          <p>Paper, Spigot, Purpur, Fabric, Forge, Quilt, modpack CurseForge.</p>
+        </div>
+        <div class="stat">
+          <h3>Auto Backup</h3>
+          <p>Sao lưu hằng ngày, khôi phục nhanh chỉ với 1 nút.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- FAQ                            -->
+  <!-- ============================= -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ — Câu hỏi thường gặp</h2>
+      <details>
+        <summary>Có mất dữ liệu khi gia hạn/nâng cấp gói không?</summary>
+        <p>Không. Dữ liệu và cấu hình được giữ nguyên. Khi nâng gói chỉ cần restart là xong.</p>
+      </details>
+      <details>
+        <summary>Hỗ trợ cài mod/plugin không?</summary>
+        <p>Có. Bảng điều khiển hỗ trợ cài bằng 1‑click hoặc upload .jar trực tiếp.</p>
+      </details>
+      <details>
+        <summary>Có hỗ trợ Location VN/SG không?</summary>
+        <p>Có. Bạn có thể chọn máy chủ khu vực Việt Nam hoặc Singapore để ping thấp.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- Footer                         -->
+  <!-- ============================= -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand"><span class="logo" aria-hidden="true"></span> EnderDragon Cloud</div>
+        <p class="tiny">Minecraft® là thương hiệu của Mojang Studios. Chúng tôi không liên kết chính thức với Mojang/Microsoft.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p class="tiny">Email: hello@enderdragon.cloud<br>Discord: discord.gg/enderdragon</p>
+      </div>
+      <div>
+        <strong>Chính sách</strong>
+        <p class="tiny"><a href="#">Điều khoản</a> • <a href="#">Quyền riêng tư</a></p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
